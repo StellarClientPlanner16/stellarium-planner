@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stellarium Planner — کنکور 2026/27</title>
+<title>Stellarium Planner v3.0 — کنکور ۱۴۰۵/۱۴۰۶</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/samim-font@v4.0.1/dist/font-face.css">
 <style>
   /* =========================================================
-     PREMIUM COLOR PALETTES
+     PREMIUM COLOR PALETTES (DARK ACADEMIA & MINIMALIST ELEGANZA)
      ========================================================= */
   html[data-theme="classic"] {
     --bg: #C8C5B5; --paper: #FDFBF7; --paper-2: #F3EFE6;
@@ -86,7 +86,7 @@
 
   .app{
     display:flex;
-    max-width:1280px;
+    max-width:1320px;
     margin:0 auto;
     padding:20px;
     gap:20px;
@@ -99,7 +99,7 @@
     border-radius:var(--radius-lg);
     box-shadow:var(--shadow);
     padding:20px 28px;
-    max-width:1280px;
+    max-width:1320px;
     margin:20px auto 0 auto;
     transition: all 0.4s var(--ease-smooth);
     border:1px solid var(--hairline);
@@ -118,7 +118,6 @@
     border-bottom:1px solid var(--hairline);
     margin-bottom:14px;
   }
-  .masthead-top .date-line{direction:ltr; unicode-bidi:isolate;}
   .controls-group{ display:flex; align-items:center; gap:10px; }
   .theme-select {
     background:var(--paper-2);
@@ -155,7 +154,7 @@
   .vol-meta{ text-align:left; font-size:12px; color:var(--text-2); line-height:1.4; direction:ltr; unicode-bidi:isolate; }
 
   /* ===== Sidebar & Main ===== */
-  .sidebar{ width:280px; flex:0 0 280px; display:flex; flex-direction:column; gap:16px; }
+  .sidebar{ width:300px; flex:0 0 300px; display:flex; flex-direction:column; gap:16px; }
   .main{ flex:1; min-width:0; display:flex; flex-direction:column; gap:20px; }
   .card{
     background:var(--paper);
@@ -219,8 +218,9 @@
   .progress-fill{ height:100%; background:var(--accent); width:0%; border-radius:var(--radius-pill); transition: width 0.6s var(--ease-smooth); }
   .progress-label{ display:flex; justify-content:space-between; font-size:12px; color:var(--text-2); margin-top:8px; }
   #progress-pct{color:var(--accent); font-weight:800;}
+  .time-stats { font-size: 11.5px; color: var(--text-2); margin-top: 6px; text-align: center; }
 
-  /* Notes */
+  /* Notes / Loqme */
   .note-input{ display:flex; gap:8px; }
   .note-input input{ flex:1; padding:9px 12px; border-radius:var(--radius-sm); border:1px solid var(--hairline); background:var(--paper-2); color:var(--text); font-family:'Samim', sans-serif; font-size:13px; outline:none; transition: all 0.25s var(--ease-smooth); }
   .note-input input:focus { border-color: var(--accent); }
@@ -239,7 +239,7 @@
   .link-btn:hover{ background:var(--accent); color:var(--accent-ink); transform:translateY(-3px); }
 
   /* ===== Schedule Table UI ===== */
-  .schedule-header-actions{ display:flex; justify-space-between; align-items:center; padding:14px 16px 8px 16px; }
+  .schedule-header-actions{ display:flex; justify-content:space-between; align-items:center; padding:14px 16px 8px 16px; }
   .schedule-header-actions h2{ margin:0; font-size:16px; font-weight:800; }
   .schedule-card{ background:var(--paper); border:1px solid var(--hairline); border-radius:var(--radius-lg); box-shadow:var(--shadow); padding:8px; transition: all 0.35s var(--ease-smooth); }
   table{ width:100%; border-collapse:separate; border-spacing:0 8px; }
@@ -344,7 +344,26 @@
     display: flex;
     gap: 8px;
     align-items: center;
+    flex-wrap: wrap;
   }
+  .pomo-quick-presets {
+    display: flex;
+    gap: 4px;
+    margin-top: 4px;
+  }
+  .pomo-quick-btn {
+    background: var(--paper-2);
+    border: 1px solid var(--hairline);
+    color: var(--text-2);
+    border-radius: var(--radius-pill);
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .pomo-quick-btn:hover { border-color: var(--accent); color: var(--accent); }
+
   .sound-control-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -451,7 +470,7 @@
   .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
   .modal-actions{ display:flex; justify-content:flex-end; gap:8px; margin-top:18px; }
 
-  footer.foot{ max-width:1280px; margin:24px auto 0 auto; text-align:center; font-size:11.5px; color:var(--text-2); padding:12px; }
+  footer.foot{ max-width:1320px; margin:24px auto 0 auto; text-align:center; font-size:11.5px; color:var(--text-2); padding:12px; }
 
   @media (max-width: 900px){
     .app{flex-direction:column;}
@@ -481,7 +500,7 @@
 
 <div class="masthead">
   <div class="masthead-top">
-    <span class="date-line">Vol. CXLVI · No. 1</span>
+    <span class="date-line" id="jalali-date-display">Vol. CXLVI · No. 1</span>
     <div class="controls-group">
       <select class="theme-select" id="theme-palette-select" title="انتخاب پالت رنگی">
         <option value="classic">☕ آکادمیا (اصلی)</option>
@@ -495,7 +514,7 @@
   <div class="masthead-main">
     <div>
       <h1 class="masthead-title">Stellarium <span>Planner</span></h1>
-      <p class="masthead-sub">The Daily Edition <span class="dot"></span> کنکور 2026/27</p>
+      <p class="masthead-sub">The Daily Edition <span class="dot"></span> کنکور ۱۴۰۵/۱۴۰۶</p>
     </div>
     <div class="vol-meta">Est. 2025<br>Daily Study Gazette</div>
   </div>
@@ -534,6 +553,7 @@
       <h3>Progress</h3>
       <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
       <div class="progress-label"><span>پیشرفت امروز</span><span id="progress-pct">۰٪</span></div>
+      <div class="time-stats" id="time-stats-label">مجموع مطالعه: ۰ ساعت</div>
       <button class="btn btn-ghost btn-block" id="reset-day">بازنشانی تیک‌های روز</button>
       <button class="btn btn-danger-ghost btn-block" id="reset-full">بازنشانی کامل جدول</button>
     </div>
@@ -571,6 +591,12 @@
             <span class="cycle-dot"></span>
             <span class="cycle-dot"></span>
           </div>
+          <div class="pomo-quick-presets">
+            <button class="pomo-quick-btn" data-min="15">15m</button>
+            <button class="pomo-quick-btn" data-min="25">25m</button>
+            <button class="pomo-quick-btn" data-min="45">45m</button>
+            <button class="pomo-quick-btn" data-min="60">60m</button>
+          </div>
         </div>
         <div class="pomo-controls-box">
           <div class="pomo-btn-group">
@@ -596,6 +622,10 @@
             <div class="sound-item">
               <button class="sound-toggle-btn" data-sound="fire"><span>🔥 آتش و چوب (Cozy)</span><span class="sound-indicator">OFF</span></button>
               <input type="range" class="sound-slider" data-sound="fire" min="0" max="1" step="0.05" value="0.5">
+            </div>
+            <div class="sound-item">
+              <button class="sound-toggle-btn" data-sound="binaural"><span>🧠 ضربان بینورال (40Hz)</span><span class="sound-indicator">OFF</span></button>
+              <input type="range" class="sound-slider" data-sound="binaural" min="0" max="1" step="0.05" value="0.4">
             </div>
           </div>
 
@@ -700,11 +730,25 @@
   </div>
 </div>
 
-<footer class="foot">Stellarium Planner — برنامه‌ریز روزانه کنکور ۱۴۰۵/۱۴۰۶</footer>
+<footer class="foot">Stellarium Planner v3.0 — برنامه‌ریز جامع کنکور ریاضی ۱۴۰۵/۱۴۰۶</footer>
 
 <script>
 (function(){
   "use strict";
+
+  /* ---------- Jalali Date Calculation ---------- */
+  function getPersianDateStr() {
+    try {
+      var now = new Date();
+      var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      var persianDate = new Intl.DateTimeFormat('fa-IR', options).format(now);
+      return persianDate;
+    } catch(e) {
+      return "امروز · روز جدید مطالعه";
+    }
+  }
+  var jalaliElem = document.getElementById("jalali-date-display");
+  if(jalaliElem) jalaliElem.textContent = getPersianDateStr();
 
   /* ---------- Default Data & Constants ---------- */
   var defaultRows = [
@@ -735,7 +779,7 @@
     {label:"شیمی", url:"https://biomaze.ir/panel/classes/categories/ec4bbf7f-f9e8-456e-bf26-dce361957dff?year=43372291-d7d2-412e-a07c-164db8321454&display=lesson"},
     {label:"عربی", url:"https://biomaze.ir/panel/classes/categories/8074388d-f234-4486-8d23-3822f2c5a6c0?year=43372291-d7d2-412e-a07c-164db8321454&display=lesson"},
     {label:"فارسی", url:"https://biomaze.ir/panel/classes/categories/575e527c-5d24-4408-b08d-2635c9c4f796?year=43372291-d7d2-412e-a07c-164db8321454&display=lesson"},
-    {label:"زبان", url:"https://notebook.google.com/"},
+    {label:"زبان / مرور", url:"https://notebook.google.com/"},
     {label:"برنامه‌نویسی", url:"https://roadmap.sh"},
     {label:"پنل کاربری", url:"https://biomaze.ir/panel"}
   ];
@@ -989,10 +1033,16 @@
   /* ---------- Progress & Countdown ---------- */
   function updateProgress(){
     var checkable = scheduleRows.filter(function(r){ return r.checkbox; });
-    var done = checkable.filter(function(r){ return !!checksState[r.id]; }).length;
-    var pct = checkable.length ? Math.round((done/checkable.length)*100) : 0;
+    var done = checkable.filter(function(r){ return !!checksState[r.id]; });
+    var pct = checkable.length ? Math.round((done.length/checkable.length)*100) : 0;
+    
+    // Total hours studied calculation
+    var completedMins = done.reduce(function(acc, curr){ return acc + curr.duration; }, 0);
+    var completedHours = (completedMins / 60).toFixed(1);
+
     document.getElementById("progress-fill").style.width = pct + "%";
     document.getElementById("progress-pct").textContent = toPersianDigits(pct) + "٪";
+    document.getElementById("time-stats-label").textContent = "مجموع مطالعه: " + toPersianDigits(completedHours) + " ساعت";
   }
 
   var konkurDate = new Date("2027-07-02T08:00:00");
@@ -1082,7 +1132,7 @@
   });
 
   /* =========================================================
-     OPTIMIZED WEB AUDIO ENGINE (WHITE, BROWN, RAIN, FIRE/CRACKLE)
+     OPTIMIZED WEB AUDIO ENGINE (WHITE, BROWN, RAIN, FIRE, BINAURAL)
      ========================================================= */
   var audioCtx = null;
   var soundNodes = {};
@@ -1161,7 +1211,6 @@
       soundNodes[type] = { src: src, gain: gainNode };
     } 
     else if (type === 'fire') {
-      // Deep warm wood rumble
       var src = audioCtx.createBufferSource();
       src.buffer = createAudioBuffer('brown');
       src.loop = true;
@@ -1199,6 +1248,28 @@
 
       soundNodes[type] = { src: src, gain: gainNode, timer: crackleInterval };
     }
+    else if (type === 'binaural') {
+      // 200 Hz base carrier, 240 Hz right ear carrier -> 40 Hz Gamma Focus Tone
+      var merger = audioCtx.createChannelMerger(2);
+      
+      var oscL = audioCtx.createOscillator();
+      var oscR = audioCtx.createOscillator();
+      
+      oscL.type = 'sine';
+      oscL.frequency.setValueAtTime(200, audioCtx.currentTime);
+      
+      oscR.type = 'sine';
+      oscR.frequency.setValueAtTime(240, audioCtx.currentTime);
+
+      oscL.connect(merger, 0, 0); // Left channel
+      oscR.connect(merger, 0, 1); // Right channel
+
+      merger.connect(gainNode);
+      oscL.start();
+      oscR.start();
+
+      soundNodes[type] = { oscL: oscL, oscR: oscR, gain: gainNode };
+    }
 
     gainNode.connect(audioCtx.destination);
   }
@@ -1206,6 +1277,7 @@
   function stopSound(type) {
     if (soundNodes[type]) {
       if (soundNodes[type].src) soundNodes[type].src.stop();
+      if (soundNodes[type].oscL) { soundNodes[type].oscL.stop(); soundNodes[type].oscR.stop(); }
       if (soundNodes[type].timer) clearInterval(soundNodes[type].timer);
       delete soundNodes[type];
     }
@@ -1290,7 +1362,7 @@
   });
 
   /* =========================================================
-     POMODORO ENGINE
+     POMODORO ENGINE WITH QUICK PRESETS
      ========================================================= */
   var pomoDefaults = { work: 25, shortBreak: 5, longBreak: 15, maxCycles: 4 };
   var pomoConfig = loadJSON(LS.pomoConfig, pomoDefaults);
@@ -1389,6 +1461,20 @@
     pomoStartBtn.textContent = "▶ شروع تمرکز";
     switchPomoMode('work');
     renderPomoDots();
+  });
+
+  /* Quick Preset Buttons */
+  document.querySelectorAll('.pomo-quick-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var mins = parseInt(this.getAttribute('data-min'), 10);
+      pomoConfig.work = mins;
+      saveJSON(LS.pomoConfig, pomoConfig);
+      
+      clearInterval(pomoState.timerId);
+      pomoState.isRunning = false;
+      pomoStartBtn.textContent = "▶ شروع تمرکز";
+      switchPomoMode('work');
+    });
   });
 
   /* Pomodoro Settings Modal */
