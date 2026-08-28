@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stellarium Planner v3.0 — کنکور ۱۴۰۵/۱۴۰۶</title>
+<title>Stellarium Planner v3.1 — کنکور ۱۴۰۵/۱۴۰۶</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/samim-font@v4.0.1/dist/font-face.css">
 <style>
   /* =========================================================
@@ -180,6 +180,21 @@
   }
   .card h3::after{ content:""; flex:1; height:1px; background:var(--hairline); }
 
+  .icon-btn-inline {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-2);
+    padding: 2px 4px;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+  }
+  .icon-btn-inline:hover {
+    color: var(--accent);
+    transform: scale(1.15);
+  }
+
   /* Countdown */
   .countdown-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
   .countdown-unit{
@@ -237,6 +252,31 @@
   .link-grid{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
   .link-btn{ background:var(--paper-2); border:1px solid var(--hairline); border-radius:var(--radius-md); padding:10px 8px; text-align:center; font-size:12.5px; font-weight:700; transition: all 0.25s var(--ease-smooth); }
   .link-btn:hover{ background:var(--accent); color:var(--accent-ink); transform:translateY(-3px); }
+
+  /* Quick Access Manager Modal Item List */
+  .links-manage-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 250px;
+    overflow-y: auto;
+    margin-bottom: 14px;
+    padding-left: 4px;
+  }
+  .link-manage-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper-2);
+    border: 1px solid var(--hairline);
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 12.5px;
+  }
+  .link-manage-info { display: flex; flex-direction: column; gap: 2px; overflow: hidden; }
+  .link-manage-label { font-weight: 800; color: var(--text); }
+  .link-manage-url { font-size: 11px; color: var(--text-2); direction: ltr; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .link-manage-actions { display: flex; gap: 4px; }
 
   /* ===== Schedule Table UI ===== */
   .schedule-header-actions{ display:flex; justify-content:space-between; align-items:center; padding:14px 16px 8px 16px; }
@@ -568,7 +608,10 @@
     </div>
 
     <div class="card">
-      <h3>Quick Access</h3>
+      <h3>
+        Quick Access 
+        <button class="icon-btn-inline" id="manage-links-btn" title="مدیریت دکمه‌ها">⚙️</button>
+      </h3>
       <div class="link-grid" id="link-grid"></div>
     </div>
 
@@ -730,7 +773,33 @@
   </div>
 </div>
 
-<footer class="foot">Stellarium Planner v3.0 — برنامه‌ریز جامع کنکور ریاضی ۱۴۰۵/۱۴۰۶</footer>
+<!-- Quick Access Customization Modal -->
+<div class="modal-overlay" id="links-modal">
+  <div class="modal-card">
+    <h3>مدیریت لینک‌های سریع (Quick Access)</h3>
+    <div class="links-manage-list" id="links-manage-list"></div>
+    <hr style="border: 0; border-top: 1px solid var(--hairline); margin: 12px 0;">
+    <h4 id="link-form-title" style="margin: 0 0 10px 0; font-size: 13px; color: var(--accent);">افزودن لینک جدید</h4>
+    <form id="link-form">
+      <input type="hidden" id="link-edit-index" value="-1">
+      <div class="form-group">
+        <label for="link-label-input">عنوان دکمه</label>
+        <input type="text" id="link-label-input" placeholder="مثلاً: مرور فیزیک" required>
+      </div>
+      <div class="form-group">
+        <label for="link-url-input">آدرس لینک (URL)</label>
+        <input type="url" id="link-url-input" placeholder="https://..." required dir="ltr">
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="cancel-link-edit" style="display:none;">انصراف از ویرایش</button>
+        <button type="submit" class="btn" id="link-submit-btn">افزودن لینک</button>
+        <button type="button" class="btn btn-ghost" id="close-links-modal">بستن</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<footer class="foot">Stellarium Planner v3.1 — برنامه‌ریز جامع کنکور ریاضی ۱۴۰۵/۱۴۰۶</footer>
 
 <script>
 (function(){
@@ -771,7 +840,7 @@
     {id:17, duration:390, title:"🌙 خواب شبانه",                    details:"۵.۵ ساعت خواب عمیق و ریکاوری کامل برای روز بعد", checkbox:false}
   ];
 
-  var links = [
+  var defaultLinks = [
     {label:"حسابان", url:"https://biomaze.ir/panel/classes/categories/420b24f2-9c0f-453c-b9f7-07020191da57?year=43372291-d7d2-412e-a07c-164db8321454&display=lesson"},
     {label:"فیزیک", url:"https://biomaze.ir/panel/classes/categories/00cbe863-6e69-408d-9f9a-183f08aae362?year=43372291-d7d2-412e-a07c-164db8321454&display=lesson"},
     {label:"هندسه", url:"https://biomaze.ir/panel/classes/categories/6955b3e1-a33f-4de7-a55c-5e76c383a2b1?year=43372291-d7d2-412e-a07c-164db8321454&display=lesson"},
@@ -791,7 +860,8 @@
     mode:"stellarium_mode_v3",
     palette:"stellarium_palette_v3",
     startTime:"stellarium_start_time_v3",
-    pomoConfig:"stellarium_pomo_cfg_v1"
+    pomoConfig:"stellarium_pomo_cfg_v1",
+    links:"stellarium_quick_links_v1"
   };
 
   /* ---------- Helper Utils ---------- */
@@ -819,6 +889,7 @@
   var checksState = loadJSON(LS.checks, {});
   var notesState = loadJSON(LS.notes, []);
   var startTimeVal = loadJSON(LS.startTime, "05:00");
+  var quickLinks = loadJSON(LS.links, defaultLinks);
 
   var timeInput = document.getElementById("start-time");
   timeInput.value = startTimeVal;
@@ -1116,19 +1187,138 @@
   document.getElementById("reset-full").addEventListener("click", function(){
     if(!confirm("آیا از بازنشانی کلی برنامه به حالت پیش‌فرض مطمئن هستید؟")) return;
     scheduleRows = JSON.parse(JSON.stringify(defaultRows));
+    quickLinks = JSON.parse(JSON.stringify(defaultLinks));
     checksState = {}; notesState = []; startTimeVal = "05:00";
     timeInput.value = startTimeVal;
     saveJSON(LS.schedule, scheduleRows); saveJSON(LS.checks, checksState);
     saveJSON(LS.notes, notesState); saveJSON(LS.startTime, startTimeVal);
-    renderSchedule(); renderNotes();
+    saveJSON(LS.links, quickLinks);
+    renderSchedule(); renderNotes(); renderQuickLinks();
   });
 
-  /* ---------- Quick Links ---------- */
+  /* ---------- Quick Links Management ---------- */
   var linkGrid = document.getElementById("link-grid");
-  links.forEach(function(l){
-    var a = document.createElement("a");
-    a.className = "link-btn"; a.href = l.url; a.target = "_blank"; a.rel = "noopener noreferrer"; a.textContent = l.label;
-    linkGrid.appendChild(a);
+  var linksModal = document.getElementById("links-modal");
+  var linksManageList = document.getElementById("links-manage-list");
+  var linkForm = document.getElementById("link-form");
+  var linkEditIndex = document.getElementById("link-edit-index");
+  var linkFormTitle = document.getElementById("link-form-title");
+  var linkSubmitBtn = document.getElementById("link-submit-btn");
+  var cancelLinkEditBtn = document.getElementById("cancel-link-edit");
+
+  function renderQuickLinks(){
+    linkGrid.innerHTML = "";
+    quickLinks.forEach(function(l){
+      var a = document.createElement("a");
+      a.className = "link-btn"; a.href = l.url; a.target = "_blank"; a.rel = "noopener noreferrer"; a.textContent = l.label;
+      linkGrid.appendChild(a);
+    });
+  }
+
+  function renderLinksManager(){
+    linksManageList.innerHTML = "";
+    if(quickLinks.length === 0){
+      linksManageList.innerHTML = '<div style="font-size:12px; color:var(--text-2);">هیچ لینکی ثبت نشده است.</div>';
+      return;
+    }
+    quickLinks.forEach(function(l, idx){
+      var item = document.createElement("div");
+      item.className = "link-manage-item";
+      
+      var info = document.createElement("div");
+      info.className = "link-manage-info";
+      
+      var lbl = document.createElement("span");
+      lbl.className = "link-manage-label";
+      lbl.textContent = l.label;
+      
+      var url = document.createElement("span");
+      url.className = "link-manage-url";
+      url.textContent = l.url;
+      
+      info.appendChild(lbl);
+      info.appendChild(url);
+
+      var actions = document.createElement("div");
+      actions.className = "link-manage-actions";
+
+      var editBtn = document.createElement("button");
+      editBtn.type = "button";
+      editBtn.className = "row-action-btn";
+      editBtn.textContent = "✏️";
+      editBtn.addEventListener("click", function(){ startEditingLink(idx); });
+
+      var delBtn = document.createElement("button");
+      delBtn.type = "button";
+      delBtn.className = "row-action-btn";
+      delBtn.textContent = "🗑️";
+      delBtn.addEventListener("click", function(){ deleteLink(idx); });
+
+      actions.appendChild(editBtn);
+      actions.appendChild(delBtn);
+      item.appendChild(info);
+      item.appendChild(actions);
+
+      linksManageList.appendChild(item);
+    });
+  }
+
+  function resetLinkForm(){
+    linkEditIndex.value = "-1";
+    linkFormTitle.textContent = "افزودن لینک جدید";
+    linkSubmitBtn.textContent = "افزودن لینک";
+    cancelLinkEditBtn.style.display = "none";
+    linkForm.reset();
+  }
+
+  function startEditingLink(idx){
+    var l = quickLinks[idx];
+    if(!l) return;
+    linkEditIndex.value = idx;
+    document.getElementById("link-label-input").value = l.label;
+    document.getElementById("link-url-input").value = l.url;
+    linkFormTitle.textContent = "ویرایش لینک (" + l.label + ")";
+    linkSubmitBtn.textContent = "ذخیره تغییرات";
+    cancelLinkEditBtn.style.display = "inline-flex";
+  }
+
+  function deleteLink(idx){
+    if(!confirm("آیا این دکمه حذف شود؟")) return;
+    quickLinks.splice(idx, 1);
+    saveJSON(LS.links, quickLinks);
+    renderQuickLinks();
+    renderLinksManager();
+    resetLinkForm();
+  }
+
+  document.getElementById("manage-links-btn").addEventListener("click", function(){
+    resetLinkForm();
+    renderLinksManager();
+    linksModal.classList.add("active");
+  });
+
+  document.getElementById("close-links-modal").addEventListener("click", function(){
+    linksModal.classList.remove("active");
+  });
+
+  cancelLinkEditBtn.addEventListener("click", resetLinkForm);
+
+  linkForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    var label = document.getElementById("link-label-input").value.trim();
+    var url = document.getElementById("link-url-input").value.trim();
+    var idx = parseInt(linkEditIndex.value, 10);
+
+    if(idx >= 0 && idx < quickLinks.length){
+      quickLinks[idx] = { label: label, url: url };
+    } else {
+      quickLinks.push({ label: label, url: url });
+    }
+
+    saveJSON(LS.links, quickLinks);
+    renderQuickLinks();
+    renderLinksManager();
+    resetLinkForm();
   });
 
   /* =========================================================
@@ -1147,9 +1337,8 @@
     }
   }
 
-  // Pre-generate loopable noise buffers for high performance & accuracy
   function createAudioBuffer(type) {
-    var bufferSize = audioCtx.sampleRate * 3; // 3 seconds seamless loop
+    var bufferSize = audioCtx.sampleRate * 3;
     var buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
     var data = buffer.getChannelData(0);
 
@@ -1166,7 +1355,6 @@
         data[i] *= 3.5;
       }
     } else if (type === 'rain') {
-      // Pink Noise Approximation for natural Rain
       var b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
       for (var i = 0; i < bufferSize; i++) {
         var white = Math.random() * 2 - 1;
@@ -1223,7 +1411,6 @@
       filter.connect(gainNode);
       src.start();
 
-      // Authentic Crackle Engine
       var crackleInterval = setInterval(function() {
         if (!soundNodes['fire']) return;
         if (Math.random() < 0.35) {
@@ -1249,7 +1436,6 @@
       soundNodes[type] = { src: src, gain: gainNode, timer: crackleInterval };
     }
     else if (type === 'binaural') {
-      // 200 Hz base carrier, 240 Hz right ear carrier -> 40 Hz Gamma Focus Tone
       var merger = audioCtx.createChannelMerger(2);
       
       var oscL = audioCtx.createOscillator();
@@ -1261,8 +1447,8 @@
       oscR.type = 'sine';
       oscR.frequency.setValueAtTime(240, audioCtx.currentTime);
 
-      oscL.connect(merger, 0, 0); // Left channel
-      oscR.connect(merger, 0, 1); // Right channel
+      oscL.connect(merger, 0, 0);
+      oscR.connect(merger, 0, 1);
 
       merger.connect(gainNode);
       oscL.start();
@@ -1288,8 +1474,8 @@
     var osc = audioCtx.createOscillator();
     var gain = audioCtx.createGain();
     osc.type = 'sine';
-    osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
-    osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.15); // A5
+    osc.frequency.setValueAtTime(587.33, audioCtx.currentTime);
+    osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.15);
     gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.6);
     osc.connect(gain);
@@ -1513,6 +1699,7 @@
   renderNotes();
   renderPomoDots();
   updatePomoDisplay();
+  renderQuickLinks();
 
 })();
 </script>
