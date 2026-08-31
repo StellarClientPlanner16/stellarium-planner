@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stellarium Planner v3.1 — کنکور ۱۴۰۵/۱۴۰۶</title>
+<title>Stellarium Planner v3.2 — کنکور ۱۴۰۵/۱۴۰۶</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/samim-font@v4.0.1/dist/font-face.css">
 <style>
   /* =========================================================
@@ -83,6 +83,7 @@
   }
   ::selection{background:var(--accent); color:var(--accent-ink);}
   a{color:inherit; text-decoration:none;}
+  button, input, select, textarea { font-family:'Samim', Tahoma, sans-serif; }
 
   .app{
     display:flex;
@@ -124,7 +125,6 @@
     border:1px solid var(--hairline);
     border-radius:var(--radius-pill);
     color:var(--text);
-    font-family:'Samim', sans-serif;
     font-size:12px;
     font-weight:700;
     padding:6px 14px;
@@ -207,7 +207,7 @@
   /* Time Widget */
   .time-widget { display: flex; flex-direction: column; gap: 10px; }
   .time-input-wrapper input[type="time"] {
-    width: 100%; padding: 10px 14px; border-radius: var(--radius-md); border: 1px solid var(--hairline); background: var(--paper-2); color: var(--text); font-family: 'Samim', sans-serif; font-size: 16px; font-weight: 800; text-align: center; outline: none; transition: all 0.25s var(--ease-smooth);
+    width: 100%; padding: 10px 14px; border-radius: var(--radius-md); border: 1px solid var(--hairline); background: var(--paper-2); color: var(--text); font-size: 16px; font-weight: 800; text-align: center; outline: none; transition: all 0.25s var(--ease-smooth);
   }
   .time-input-wrapper input[type="time"]:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(215, 65, 8, 0.15); }
   .preset-pills { display: flex; gap: 6px; justify-content: space-between; }
@@ -218,7 +218,7 @@
 
   /* Buttons */
   .btn{
-    background:var(--accent); color:var(--accent-ink); border:none; padding:10px 16px; border-radius:var(--radius-pill); cursor:pointer; font-family:'Samim', sans-serif; font-size:13px; font-weight:700; transition: all 0.25s var(--ease-smooth); white-space:nowrap; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background:var(--accent); color:var(--accent-ink); border:none; padding:10px 16px; border-radius:var(--radius-pill); cursor:pointer; font-size:13px; font-weight:700; transition: all 0.25s var(--ease-smooth); white-space:nowrap; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   }
   .btn:hover{ filter:brightness(1.1); transform:translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
   .btn:active{ transform:translateY(0); }
@@ -227,6 +227,42 @@
   .btn-block{width:100%; margin-top:10px;}
   .btn-danger-ghost{ background:transparent; color:var(--accent); border:1px solid var(--hairline); margin-top:6px; box-shadow:none; }
   .btn-danger-ghost:hover{ background:rgba(215, 65, 8, 0.08); border-color:var(--accent); }
+
+  /* Day Selector Navigation Tabs */
+  .day-tabs-wrapper {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .day-tab-btn {
+    flex: 1;
+    min-width: 70px;
+    background: var(--paper-2);
+    border: 1px solid var(--hairline);
+    color: var(--text-2);
+    border-radius: var(--radius-pill);
+    padding: 8px 10px;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s var(--ease-smooth);
+    text-align: center;
+    white-space: nowrap;
+  }
+  .day-tab-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+  }
+  .day-tab-btn.active {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  }
 
   /* Progress */
   .progress-track{ background:var(--paper-2); border:1px solid var(--hairline); border-radius:var(--radius-pill); height:14px; overflow:hidden; margin-top:4px; }
@@ -237,7 +273,7 @@
 
   /* Notes / Loqme */
   .note-input{ display:flex; gap:8px; }
-  .note-input input{ flex:1; padding:9px 12px; border-radius:var(--radius-sm); border:1px solid var(--hairline); background:var(--paper-2); color:var(--text); font-family:'Samim', sans-serif; font-size:13px; outline:none; transition: all 0.25s var(--ease-smooth); }
+  .note-input input{ flex:1; padding:9px 12px; border-radius:var(--radius-sm); border:1px solid var(--hairline); background:var(--paper-2); color:var(--text); font-size:13px; outline:none; transition: all 0.25s var(--ease-smooth); }
   .note-input input:focus { border-color: var(--accent); }
   #notes-list{ list-style:none; margin:12px 0 0 0; padding:0; display:flex; flex-direction:column; gap:8px; max-height:220px; overflow-y:auto; }
   #notes-list li{ display:flex; align-items:center; gap:8px; background:var(--paper-2); border-radius:var(--radius-sm); padding:8px 10px; font-size:13px; border: 1px solid var(--hairline); transition: all 0.3s var(--ease-smooth); }
@@ -279,9 +315,9 @@
   .link-manage-actions { display: flex; gap: 4px; }
 
   /* ===== Schedule Table UI ===== */
-  .schedule-header-actions{ display:flex; justify-content:space-between; align-items:center; padding:14px 16px 8px 16px; }
+  .schedule-header-actions{ display:flex; justify-content:space-between; align-items:center; padding:10px 16px 8px 16px; }
   .schedule-header-actions h2{ margin:0; font-size:16px; font-weight:800; }
-  .schedule-card{ background:var(--paper); border:1px solid var(--hairline); border-radius:var(--radius-lg); box-shadow:var(--shadow); padding:8px; transition: all 0.35s var(--ease-smooth); }
+  .schedule-card{ background:var(--paper); border:1px solid var(--hairline); border-radius:var(--radius-lg); box-shadow:var(--shadow); padding:14px 16px; transition: all 0.35s var(--ease-smooth); }
   table{ width:100%; border-collapse:separate; border-spacing:0 8px; }
   thead{ position:absolute; width:1px;height:1px; overflow:hidden; clip:rect(0 0 0 0); }
   tbody tr{ background:var(--paper-2); transition: transform 0.25s var(--ease-smooth), opacity 0.3s ease; }
@@ -309,189 +345,6 @@
   .stamp.checked{ background:var(--accent); }
   .stamp.checked::after{ content:"✓"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--accent-ink); font-size:13px; font-weight:900; }
 
-  /* =========================================================
-     POMODORO & OPTIMIZED SOUNDSCAPE INTEGRATED UI
-     ========================================================= */
-  .pomo-card {
-    background: var(--paper);
-    border: 1px solid var(--hairline);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    transition: all 0.35s var(--ease-smooth);
-  }
-  .pomo-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--hairline);
-    padding-bottom: 10px;
-  }
-  .pomo-header h2 { margin: 0; font-size: 16px; font-weight: 800; color: var(--accent); }
-  .pomo-mode-badge {
-    font-size: 12px; font-weight: 700; background: var(--paper-2); border: 1px solid var(--hairline); padding: 4px 12px; border-radius: var(--radius-pill); color: var(--text-2);
-  }
-
-  .pomo-body {
-    display: flex;
-    gap: 24px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  .pomo-display-box {
-    flex: 1;
-    min-width: 220px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: var(--paper-2);
-    border: 1px solid var(--hairline);
-    border-radius: var(--radius-md);
-    padding: 16px;
-    position: relative;
-  }
-  .pomo-timer-digits {
-    font-size: 54px;
-    font-weight: 900;
-    color: var(--text);
-    direction: ltr;
-    font-family: 'Samim', sans-serif;
-    line-height: 1;
-    margin: 8px 0;
-  }
-  .pomo-cycle-dots {
-    display: flex;
-    gap: 6px;
-    margin-top: 4px;
-  }
-  .cycle-dot {
-    width: 8px; height: 8px; border-radius: 50%; background: var(--hairline); transition: all 0.3s ease;
-  }
-  .cycle-dot.active { background: var(--accent); transform: scale(1.3); }
-
-  .pomo-controls-box {
-    flex: 2;
-    min-width: 280px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-  .pomo-btn-group {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  .pomo-quick-presets {
-    display: flex;
-    gap: 4px;
-    margin-top: 4px;
-  }
-  .pomo-quick-btn {
-    background: var(--paper-2);
-    border: 1px solid var(--hairline);
-    color: var(--text-2);
-    border-radius: var(--radius-pill);
-    padding: 3px 10px;
-    font-size: 11px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .pomo-quick-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-  .sound-control-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 8px;
-    background: var(--paper-2);
-    padding: 12px;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--hairline);
-  }
-  .sound-item {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    font-size: 11.5px;
-    font-weight: 700;
-  }
-  .sound-toggle-btn {
-    background: var(--paper);
-    border: 1px solid var(--hairline);
-    color: var(--text);
-    padding: 6px 10px;
-    border-radius: var(--radius-pill);
-    cursor: pointer;
-    font-family: 'Samim', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: all 0.2s ease;
-  }
-  .sound-toggle-btn.active {
-    background: var(--accent);
-    color: var(--accent-ink);
-    border-color: var(--accent);
-  }
-  .sound-slider {
-    width: 100%;
-    accent-color: var(--accent);
-    cursor: pointer;
-    height: 4px;
-  }
-
-  /* YouTube Ambient Input Section */
-  .yt-ambient-box {
-    margin-top: 8px;
-    background: var(--paper-2);
-    padding: 10px 12px;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--hairline);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .yt-ambient-input-row {
-    display: flex;
-    gap: 6px;
-  }
-  .yt-ambient-input-row input {
-    flex: 1;
-    padding: 6px 10px;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--hairline);
-    background: var(--paper);
-    color: var(--text);
-    font-family: 'Samim', sans-serif;
-    font-size: 11.5px;
-    outline: none;
-    direction: ltr;
-  }
-  .yt-ambient-input-row input:focus { border-color: var(--accent); }
-  .yt-player-container {
-    width: 100%;
-    height: 0;
-    overflow: hidden;
-    transition: height 0.3s var(--ease-smooth);
-    border-radius: var(--radius-sm);
-  }
-  .yt-player-container.active {
-    height: 120px;
-    margin-top: 4px;
-  }
-  .yt-player-container iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-
   /* Modal Settings */
   .modal-overlay{
     position:fixed; inset:0; background:rgba(0,0,0,0.45); backdrop-filter: blur(4px); display:flex; align-items:center; justify-content:center; z-index:1000; opacity:0; pointer-events:none; transition: opacity 0.3s var(--ease-smooth);
@@ -505,7 +358,7 @@
   .form-group{ margin-bottom:14px; display:flex; flex-direction:column; gap:4px; }
   .form-group label{ font-size:12px; color:var(--text-2); font-weight:700; }
   .form-group input, .form-group select, .form-group textarea{
-    padding:10px 12px; border-radius:var(--radius-sm); border:1px solid var(--hairline); background:var(--paper-2); color:var(--text); font-family:'Samim', sans-serif; font-size:13px; outline:none; transition: all 0.25s var(--ease-smooth);
+    padding:10px 12px; border-radius:var(--radius-sm); border:1px solid var(--hairline); background:var(--paper-2); color:var(--text); font-size:13px; outline:none; transition: all 0.25s var(--ease-smooth);
   }
   .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
   .modal-actions{ display:flex; justify-content:flex-end; gap:8px; margin-top:18px; }
@@ -518,14 +371,12 @@
     .masthead-title{font-size:32px;}
     .col-subject{width:auto;}
     .col-details{display:none;}
-    .pomo-body{flex-direction:column;}
-    .pomo-display-box, .pomo-controls-box {width: 100%;}
   }
 
   @media print{
     @page{size: A4 landscape; margin:10mm;}
     body{background:#fff; color:#000;}
-    .sidebar, .controls-group, .masthead-top, .schedule-header-actions, .col-actions, .pomo-card {display:none !important;}
+    .sidebar, .controls-group, .masthead-top, .schedule-header-actions, .col-actions, .day-tabs-wrapper {display:none !important;}
     .app{display:block; padding:0;}
     .card{box-shadow:none;}
     .schedule-card{box-shadow:none; border:none;}
@@ -594,8 +445,8 @@
       <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
       <div class="progress-label"><span>پیشرفت امروز</span><span id="progress-pct">۰٪</span></div>
       <div class="time-stats" id="time-stats-label">مجموع مطالعه: ۰ ساعت</div>
-      <button class="btn btn-ghost btn-block" id="reset-day">بازنشانی تیک‌های روز</button>
-      <button class="btn btn-danger-ghost btn-block" id="reset-full">بازنشانی کامل جدول</button>
+      <button class="btn btn-ghost btn-block" id="reset-day">بازنشانی تیک‌های این روز</button>
+      <button class="btn btn-danger-ghost btn-block" id="reset-full">بازنشانی برنامه این روز</button>
     </div>
 
     <div class="card">
@@ -619,79 +470,22 @@
 
   <main class="main">
 
-    <!-- INTEGRATED ADVANCED POMODORO & AMBIENT SOUNDSCAPE CARD -->
-    <div class="pomo-card">
-      <div class="pomo-header">
-        <h2>⏱️ پومودورو و صوت‌درمانی Focus</h2>
-        <span class="pomo-mode-badge" id="pomo-status">آماده برای تمرکز</span>
-      </div>
-      <div class="pomo-body">
-        <div class="pomo-display-box">
-          <div class="pomo-timer-digits" id="pomo-display">25:00</div>
-          <div class="pomo-cycle-dots" id="pomo-dots" title="دورهای تکمیل شده">
-            <span class="cycle-dot"></span>
-            <span class="cycle-dot"></span>
-            <span class="cycle-dot"></span>
-            <span class="cycle-dot"></span>
-          </div>
-          <div class="pomo-quick-presets">
-            <button class="pomo-quick-btn" data-min="15">15m</button>
-            <button class="pomo-quick-btn" data-min="25">25m</button>
-            <button class="pomo-quick-btn" data-min="45">45m</button>
-            <button class="pomo-quick-btn" data-min="60">60m</button>
-          </div>
-        </div>
-        <div class="pomo-controls-box">
-          <div class="pomo-btn-group">
-            <button class="btn" id="pomo-start-btn">▶ شروع تمرکز</button>
-            <button class="btn btn-ghost" id="pomo-reset-btn">🔄 بازنشانی</button>
-            <button class="btn btn-ghost" id="pomo-settings-btn">⚙️ تنظیمات</button>
-          </div>
-          
-          <!-- Ambient Sound Synthesizer Mixer -->
-          <div class="sound-control-grid">
-            <div class="sound-item">
-              <button class="sound-toggle-btn" data-sound="white"><span>⚪ نویز سفید (White)</span><span class="sound-indicator">OFF</span></button>
-              <input type="range" class="sound-slider" data-sound="white" min="0" max="1" step="0.05" value="0.5">
-            </div>
-            <div class="sound-item">
-              <button class="sound-toggle-btn" data-sound="brown"><span>🟤 نویز قهوه‌ای (Deep)</span><span class="sound-indicator">OFF</span></button>
-              <input type="range" class="sound-slider" data-sound="brown" min="0" max="1" step="0.05" value="0.5">
-            </div>
-            <div class="sound-item">
-              <button class="sound-toggle-btn" data-sound="rain"><span>🌧️ صدای باران (Rain)</span><span class="sound-indicator">OFF</span></button>
-              <input type="range" class="sound-slider" data-sound="rain" min="0" max="1" step="0.05" value="0.5">
-            </div>
-            <div class="sound-item">
-              <button class="sound-toggle-btn" data-sound="fire"><span>🔥 آتش و چوب (Cozy)</span><span class="sound-indicator">OFF</span></button>
-              <input type="range" class="sound-slider" data-sound="fire" min="0" max="1" step="0.05" value="0.5">
-            </div>
-            <div class="sound-item">
-              <button class="sound-toggle-btn" data-sound="binaural"><span>🧠 ضربان بینورال (40Hz)</span><span class="sound-indicator">OFF</span></button>
-              <input type="range" class="sound-slider" data-sound="binaural" min="0" max="1" step="0.05" value="0.4">
-            </div>
-          </div>
-
-          <!-- YouTube Stream Player Integration -->
-          <div class="yt-ambient-box">
-            <div class="yt-ambient-input-row">
-              <input type="text" id="yt-url-input" placeholder="لینک ویدیو یا استریم یوتیوب (e.g. Lofi, Binaural)...">
-              <button class="btn" id="yt-load-btn" style="padding: 6px 14px; font-size: 11.5px;">پخش / تغییر</button>
-              <button class="btn btn-ghost" id="yt-stop-btn" style="padding: 6px 10px; font-size: 11.5px; display:none;">بستن</button>
-            </div>
-            <div class="yt-player-container" id="yt-player-container">
-              <div id="yt-iframe-holder"></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
     <!-- Main Schedule -->
     <div class="schedule-card">
+      
+      <!-- Day Selector Tab Bar -->
+      <div class="day-tabs-wrapper" id="day-tabs-wrapper">
+        <button class="day-tab-btn" data-day="sat">شنبه</button>
+        <button class="day-tab-btn" data-day="sun">یکشنبه</button>
+        <button class="day-tab-btn" data-day="mon">دوشنبه</button>
+        <button class="day-tab-btn" data-day="tue">سه‌شنبه</button>
+        <button class="day-tab-btn" data-day="wed">چهارشنبه</button>
+        <button class="day-tab-btn" data-day="thu">پنج‌شنبه</button>
+        <button class="day-tab-btn" data-day="fri">جمعه</button>
+      </div>
+
       <div class="schedule-header-actions">
-        <h2>برنامه زمانی روزانه</h2>
+        <h2 id="schedule-day-title">برنامه زمانی روزانه</h2>
         <button class="btn" id="open-add-modal">+ افزودن پارت</button>
       </div>
       <table>
@@ -744,35 +538,6 @@
   </div>
 </div>
 
-<!-- Pomodoro Customization Modal -->
-<div class="modal-overlay" id="pomo-modal">
-  <div class="modal-card">
-    <h3>سفارشی‌سازی تایمر پومودورو</h3>
-    <form id="pomo-settings-form">
-      <div class="form-group">
-        <label for="cfg-work">زمان تمرکز (دقیقه)</label>
-        <input type="number" id="cfg-work" min="1" max="120" value="25" required>
-      </div>
-      <div class="form-group">
-        <label for="cfg-short">استراحت کوتاه (دقیقه)</label>
-        <input type="number" id="cfg-short" min="1" max="60" value="5" required>
-      </div>
-      <div class="form-group">
-        <label for="cfg-long">استراحت طولانی (دقیقه)</label>
-        <input type="number" id="cfg-long" min="1" max="60" value="15" required>
-      </div>
-      <div class="form-group">
-        <label for="cfg-cycles">تعداد دور قبل از استراحت طولانی</label>
-        <input type="number" id="cfg-cycles" min="1" max="10" value="4" required>
-      </div>
-      <div class="modal-actions">
-        <button type="button" class="btn btn-ghost" id="cancel-pomo-modal">انصراف</button>
-        <button type="submit" class="btn">ذخیره تنظیمات</button>
-      </div>
-    </form>
-  </div>
-</div>
-
 <!-- Quick Access Customization Modal -->
 <div class="modal-overlay" id="links-modal">
   <div class="modal-card">
@@ -799,13 +564,25 @@
   </div>
 </div>
 
-<footer class="foot">Stellarium Planner v3.1 — برنامه‌ریز جامع کنکور ریاضی ۱۴۰۵/۱۴۰۶</footer>
+<footer class="foot">Stellarium Planner v3.2 — برنامه‌ریز جامع کنکور ریاضی ۱۴۰۵/۱۴۰۶</footer>
 
 <script>
 (function(){
   "use strict";
 
-  /* ---------- Jalali Date Calculation ---------- */
+  /* ---------- Jalali Date Calculation & Current Day Mapping ---------- */
+  var dayKeys = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+  var dayNames = {
+    sat: "شنبه", sun: "یکشنبه", mon: "دوشنبه", tue: "سه‌شنبه", wed: "چهارشنبه", thu: "پنج‌شنبه", fri: "جمعه"
+  };
+
+  function getCurrentDayKey() {
+    var todayIndex = new Date().getDay();
+    return dayKeys[todayIndex];
+  }
+
+  var currentActiveDay = getCurrentDayKey();
+
   function getPersianDateStr() {
     try {
       var now = new Date();
@@ -854,13 +631,12 @@
   ];
 
   var LS = {
-    schedule:"stellarium_schedule_v3",
-    checks:"stellarium_checks_v3",
+    schedulePrefix: "stellarium_schedule_v4_",
+    checksPrefix: "stellarium_checks_v4_",
+    startTimePrefix: "stellarium_start_time_v4_",
     notes:"stellarium_notes_v3",
     mode:"stellarium_mode_v3",
     palette:"stellarium_palette_v3",
-    startTime:"stellarium_start_time_v3",
-    pomoConfig:"stellarium_pomo_cfg_v1",
     links:"stellarium_quick_links_v1"
   };
 
@@ -884,22 +660,67 @@
   }
   function saveJSON(key, val){ try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){} }
 
-  /* ---------- State ---------- */
-  var scheduleRows = loadJSON(LS.schedule, defaultRows);
-  var checksState = loadJSON(LS.checks, {});
+  /* ---------- Dynamic State Loading per Active Day ---------- */
+  var scheduleRows = [];
+  var checksState = {};
+  var startTimeVal = "05:00";
+
+  function loadDayData(dayKey) {
+    scheduleRows = loadJSON(LS.schedulePrefix + dayKey, defaultRows);
+    checksState = loadJSON(LS.checksPrefix + dayKey, {});
+    startTimeVal = loadJSON(LS.startTimePrefix + dayKey, "05:00");
+  }
+
+  function saveDayData(dayKey) {
+    saveJSON(LS.schedulePrefix + dayKey, scheduleRows);
+    saveJSON(LS.checksPrefix + dayKey, checksState);
+    saveJSON(LS.startTimePrefix + dayKey, startTimeVal);
+  }
+
+  // Initial load for active day
+  loadDayData(currentActiveDay);
+
   var notesState = loadJSON(LS.notes, []);
-  var startTimeVal = loadJSON(LS.startTime, "05:00");
   var quickLinks = loadJSON(LS.links, defaultLinks);
 
   var timeInput = document.getElementById("start-time");
   timeInput.value = startTimeVal;
+
+  /* ---------- Day Switcher Navigation ---------- */
+  function updateDayTabsUI() {
+    document.querySelectorAll(".day-tab-btn").forEach(function(btn){
+      var d = btn.getAttribute("data-day");
+      if(d === currentActiveDay) {
+        btn.classList.add("active");
+      } else {
+        btn.classList.remove("active");
+      }
+    });
+    document.getElementById("schedule-day-title").textContent = "برنامه زمانی " + dayNames[currentActiveDay];
+  }
+
+  document.querySelectorAll(".day-tab-btn").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var selectedDay = this.getAttribute("data-day");
+      if(selectedDay === currentActiveDay) return;
+
+      // Save previous day, load new day
+      saveDayData(currentActiveDay);
+      currentActiveDay = selectedDay;
+      loadDayData(currentActiveDay);
+
+      timeInput.value = startTimeVal;
+      updateDayTabsUI();
+      renderSchedule();
+    });
+  });
 
   /* ---------- Dynamic Time Control ---------- */
   function applyNewStartTime(newTime) {
     if(!newTime) return;
     startTimeVal = newTime;
     timeInput.value = newTime;
-    saveJSON(LS.startTime, startTimeVal);
+    saveJSON(LS.startTimePrefix + currentActiveDay, startTimeVal);
     renderSchedule();
   }
   document.getElementById("apply-time").addEventListener("click", function(){ applyNewStartTime(timeInput.value); });
@@ -969,7 +790,7 @@
         stamp.setAttribute("aria-label","علامت‌گذاری وظیفه");
         stamp.addEventListener("click", function(){
           checksState[row.id] = !checksState[row.id];
-          saveJSON(LS.checks, checksState);
+          saveJSON(LS.checksPrefix + currentActiveDay, checksState);
           renderSchedule();
           updateProgress();
         });
@@ -1001,7 +822,7 @@
         var targetRow = scheduleRows.find(function(r){ return r.id == row.id; });
         if(targetRow){
           targetRow.details = tdDetails.textContent;
-          saveJSON(LS.schedule, scheduleRows);
+          saveJSON(LS.schedulePrefix + currentActiveDay, scheduleRows);
         }
       });
       tr.appendChild(tdDetails);
@@ -1042,7 +863,7 @@
     var temp = scheduleRows[index];
     scheduleRows[index] = scheduleRows[targetIndex];
     scheduleRows[targetIndex] = temp;
-    saveJSON(LS.schedule, scheduleRows);
+    saveJSON(LS.schedulePrefix + currentActiveDay, scheduleRows);
     renderSchedule();
   }
 
@@ -1050,8 +871,8 @@
     if(!confirm("آیا از حذف این پارت اطمینان دارید؟")) return;
     scheduleRows = scheduleRows.filter(function(r){ return r.id != id; });
     delete checksState[id];
-    saveJSON(LS.schedule, scheduleRows);
-    saveJSON(LS.checks, checksState);
+    saveJSON(LS.schedulePrefix + currentActiveDay, scheduleRows);
+    saveJSON(LS.checksPrefix + currentActiveDay, checksState);
     renderSchedule();
   }
 
@@ -1096,7 +917,7 @@
       scheduleRows.push({ id: Date.now(), duration: duration, title: title, details: details, checkbox: isAcademic });
     }
 
-    saveJSON(LS.schedule, scheduleRows);
+    saveJSON(LS.schedulePrefix + currentActiveDay, scheduleRows);
     renderSchedule();
     closeModal();
   });
@@ -1107,13 +928,13 @@
     var done = checkable.filter(function(r){ return !!checksState[r.id]; });
     var pct = checkable.length ? Math.round((done.length/checkable.length)*100) : 0;
     
-    // Total hours studied calculation
+    // Total hours studied calculation for active day
     var completedMins = done.reduce(function(acc, curr){ return acc + curr.duration; }, 0);
     var completedHours = (completedMins / 60).toFixed(1);
 
     document.getElementById("progress-fill").style.width = pct + "%";
     document.getElementById("progress-pct").textContent = toPersianDigits(pct) + "٪";
-    document.getElementById("time-stats-label").textContent = "مجموع مطالعه: " + toPersianDigits(completedHours) + " ساعت";
+    document.getElementById("time-stats-label").textContent = "مجموع مطالعه (" + dayNames[currentActiveDay] + "): " + toPersianDigits(completedHours) + " ساعت";
   }
 
   var konkurDate = new Date("2027-07-02T08:00:00");
@@ -1178,22 +999,22 @@
 
   /* ---------- Resets ---------- */
   document.getElementById("reset-day").addEventListener("click", function(){
-    if(!confirm("همه چک‌باکس‌ها و لقمه‌های امروز پاک شود؟")) return;
-    checksState = {}; notesState = [];
-    saveJSON(LS.checks, checksState); saveJSON(LS.notes, notesState);
-    renderSchedule(); renderNotes();
+    if(!confirm("تیک‌های " + dayNames[currentActiveDay] + " پاک شوند؟")) return;
+    checksState = {};
+    saveJSON(LS.checksPrefix + currentActiveDay, checksState);
+    renderSchedule();
   });
 
   document.getElementById("reset-full").addEventListener("click", function(){
-    if(!confirm("آیا از بازنشانی کلی برنامه به حالت پیش‌فرض مطمئن هستید؟")) return;
+    if(!confirm("آیا از بازنشانی کلی برنامه روز " + dayNames[currentActiveDay] + " به حالت پیش‌فرض مطمئن هستید؟")) return;
     scheduleRows = JSON.parse(JSON.stringify(defaultRows));
-    quickLinks = JSON.parse(JSON.stringify(defaultLinks));
-    checksState = {}; notesState = []; startTimeVal = "05:00";
+    checksState = {}; 
+    startTimeVal = "05:00";
     timeInput.value = startTimeVal;
-    saveJSON(LS.schedule, scheduleRows); saveJSON(LS.checks, checksState);
-    saveJSON(LS.notes, notesState); saveJSON(LS.startTime, startTimeVal);
-    saveJSON(LS.links, quickLinks);
-    renderSchedule(); renderNotes(); renderQuickLinks();
+    saveJSON(LS.schedulePrefix + currentActiveDay, scheduleRows); 
+    saveJSON(LS.checksPrefix + currentActiveDay, checksState);
+    saveJSON(LS.startTimePrefix + currentActiveDay, startTimeVal);
+    renderSchedule();
   });
 
   /* ---------- Quick Links Management ---------- */
@@ -1321,384 +1142,10 @@
     resetLinkForm();
   });
 
-  /* =========================================================
-     OPTIMIZED WEB AUDIO ENGINE (WHITE, BROWN, RAIN, FIRE, BINAURAL)
-     ========================================================= */
-  var audioCtx = null;
-  var soundNodes = {};
-
-  function initAudioCtx(){
-    if(!audioCtx){
-      var AudioContext = window.AudioContext || window.webkitAudioContext;
-      audioCtx = new AudioContext();
-    }
-    if(audioCtx.state === 'suspended'){
-      audioCtx.resume();
-    }
-  }
-
-  function createAudioBuffer(type) {
-    var bufferSize = audioCtx.sampleRate * 3;
-    var buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-    var data = buffer.getChannelData(0);
-
-    if (type === 'white') {
-      for (var i = 0; i < bufferSize; i++) {
-        data[i] = Math.random() * 2 - 1;
-      }
-    } else if (type === 'brown') {
-      var lastOut = 0.0;
-      for (var i = 0; i < bufferSize; i++) {
-        var white = Math.random() * 2 - 1;
-        data[i] = (lastOut + (0.02 * white)) / 1.02;
-        lastOut = data[i];
-        data[i] *= 3.5;
-      }
-    } else if (type === 'rain') {
-      var b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
-      for (var i = 0; i < bufferSize; i++) {
-        var white = Math.random() * 2 - 1;
-        b0 = 0.99886 * b0 + white * 0.0555179;
-        b1 = 0.99332 * b1 + white * 0.0750759;
-        b2 = 0.96900 * b2 + white * 0.1538520;
-        b3 = 0.86650 * b3 + white * 0.3104856;
-        b4 = 0.55000 * b4 + white * 0.5329522;
-        b5 = -0.7616 * b5 - white * 0.0168980;
-        data[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
-        data[i] *= 0.11;
-        b6 = white * 0.115926;
-      }
-    }
-    return buffer;
-  }
-
-  function startSound(type) {
-    initAudioCtx();
-    if (soundNodes[type]) return;
-
-    var gainNode = audioCtx.createGain();
-    var initialVol = parseFloat(document.querySelector('.sound-slider[data-sound="'+type+'"]').value);
-    gainNode.gain.setValueAtTime(initialVol, audioCtx.currentTime);
-
-    if (type === 'white' || type === 'brown' || type === 'rain') {
-      var src = audioCtx.createBufferSource();
-      src.buffer = createAudioBuffer(type);
-      src.loop = true;
-
-      if (type === 'rain') {
-        var filter = audioCtx.createBiquadFilter();
-        filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(1200, audioCtx.currentTime);
-        src.connect(filter);
-        filter.connect(gainNode);
-      } else {
-        src.connect(gainNode);
-      }
-
-      src.start();
-      soundNodes[type] = { src: src, gain: gainNode };
-    } 
-    else if (type === 'fire') {
-      var src = audioCtx.createBufferSource();
-      src.buffer = createAudioBuffer('brown');
-      src.loop = true;
-
-      var filter = audioCtx.createBiquadFilter();
-      filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(350, audioCtx.currentTime);
-
-      src.connect(filter);
-      filter.connect(gainNode);
-      src.start();
-
-      var crackleInterval = setInterval(function() {
-        if (!soundNodes['fire']) return;
-        if (Math.random() < 0.35) {
-          var popSrc = audioCtx.createBufferSource();
-          var popLen = Math.floor(audioCtx.sampleRate * 0.015);
-          var popBuffer = audioCtx.createBuffer(1, popLen, audioCtx.sampleRate);
-          var popData = popBuffer.getChannelData(0);
-
-          for (var i = 0; i < popLen; i++) {
-            popData[i] = (Math.random() * 2 - 1) * Math.exp(-i / (popLen * 0.2));
-          }
-          popSrc.buffer = popBuffer;
-
-          var popGain = audioCtx.createGain();
-          popGain.gain.value = (Math.random() * 0.35 + 0.05) * gainNode.gain.value;
-
-          popSrc.connect(popGain);
-          popGain.connect(audioCtx.destination);
-          popSrc.start();
-        }
-      }, 70);
-
-      soundNodes[type] = { src: src, gain: gainNode, timer: crackleInterval };
-    }
-    else if (type === 'binaural') {
-      var merger = audioCtx.createChannelMerger(2);
-      
-      var oscL = audioCtx.createOscillator();
-      var oscR = audioCtx.createOscillator();
-      
-      oscL.type = 'sine';
-      oscL.frequency.setValueAtTime(200, audioCtx.currentTime);
-      
-      oscR.type = 'sine';
-      oscR.frequency.setValueAtTime(240, audioCtx.currentTime);
-
-      oscL.connect(merger, 0, 0);
-      oscR.connect(merger, 0, 1);
-
-      merger.connect(gainNode);
-      oscL.start();
-      oscR.start();
-
-      soundNodes[type] = { oscL: oscL, oscR: oscR, gain: gainNode };
-    }
-
-    gainNode.connect(audioCtx.destination);
-  }
-
-  function stopSound(type) {
-    if (soundNodes[type]) {
-      if (soundNodes[type].src) soundNodes[type].src.stop();
-      if (soundNodes[type].oscL) { soundNodes[type].oscL.stop(); soundNodes[type].oscR.stop(); }
-      if (soundNodes[type].timer) clearInterval(soundNodes[type].timer);
-      delete soundNodes[type];
-    }
-  }
-
-  function playAlertBeep() {
-    initAudioCtx();
-    var osc = audioCtx.createOscillator();
-    var gain = audioCtx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(587.33, audioCtx.currentTime);
-    osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.15);
-    gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.6);
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc.start();
-    osc.stop(audioCtx.currentTime + 0.6);
-  }
-
-  // Ambient Sound Events
-  document.querySelectorAll('.sound-toggle-btn').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var soundType = this.getAttribute('data-sound');
-      var indicator = this.querySelector('.sound-indicator');
-      if(this.classList.contains('active')){
-        this.classList.remove('active');
-        indicator.textContent = 'OFF';
-        stopSound(soundType);
-      } else {
-        this.classList.add('active');
-        indicator.textContent = 'ON';
-        startSound(soundType);
-      }
-    });
-  });
-
-  document.querySelectorAll('.sound-slider').forEach(function(slider){
-    slider.addEventListener('input', function(){
-      var soundType = this.getAttribute('data-sound');
-      var val = parseFloat(this.value);
-      if(soundNodes[soundType] && soundNodes[soundType].gain){
-        soundNodes[soundType].gain.gain.setValueAtTime(val, audioCtx.currentTime);
-      }
-    });
-  });
-
-  /* =========================================================
-     YOUTUBE AMBIENT EMBED PLAYER ENGINE
-     ========================================================= */
-  var ytInput = document.getElementById("yt-url-input");
-  var ytLoadBtn = document.getElementById("yt-load-btn");
-  var ytStopBtn = document.getElementById("yt-stop-btn");
-  var ytContainer = document.getElementById("yt-player-container");
-  var ytHolder = document.getElementById("yt-iframe-holder");
-
-  function extractYouTubeId(url) {
-    if (!url) return null;
-    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    var match = url.match(regExp);
-    return (match && match[2].length === 11) ? match[2] : null;
-  }
-
-  ytLoadBtn.addEventListener("click", function(){
-    var rawUrl = ytInput.value.trim();
-    var videoId = extractYouTubeId(rawUrl);
-    
-    if(!videoId){
-      alert("لطفاً یک لینک معتبر از ویدیو یا استریم یوتیوب وارد کنید.");
-      return;
-    }
-
-    ytHolder.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-    ytContainer.classList.add("active");
-    ytStopBtn.style.display = "inline-flex";
-  });
-
-  ytStopBtn.addEventListener("click", function(){
-    ytHolder.innerHTML = "";
-    ytContainer.classList.remove("active");
-    ytStopBtn.style.display = "none";
-  });
-
-  /* =========================================================
-     POMODORO ENGINE WITH QUICK PRESETS
-     ========================================================= */
-  var pomoDefaults = { work: 25, shortBreak: 5, longBreak: 15, maxCycles: 4 };
-  var pomoConfig = loadJSON(LS.pomoConfig, pomoDefaults);
-
-  var pomoState = {
-    mode: 'work',
-    timeLeft: pomoConfig.work * 60,
-    isRunning: false,
-    timerId: null,
-    completedCycles: 0
-  };
-
-  var pomoDisplay = document.getElementById("pomo-display");
-  var pomoStatus = document.getElementById("pomo-status");
-  var pomoStartBtn = document.getElementById("pomo-start-btn");
-  var pomoDotsContainer = document.getElementById("pomo-dots");
-
-  function renderPomoDots() {
-    pomoDotsContainer.innerHTML = "";
-    for (var i = 0; i < pomoConfig.maxCycles; i++) {
-      var dot = document.createElement("span");
-      dot.className = "cycle-dot" + (i < pomoState.completedCycles ? " active" : "");
-      pomoDotsContainer.appendChild(dot);
-    }
-  }
-
-  function updatePomoDisplay() {
-    var m = Math.floor(pomoState.timeLeft / 60);
-    var s = pomoState.timeLeft % 60;
-    pomoDisplay.textContent = pad(m) + ":" + pad(s);
-
-    if (pomoState.mode === 'work') {
-      pomoStatus.textContent = pomoState.isRunning ? "🔥 در حال تمرکز" : "آماده برای تمرکز";
-    } else if (pomoState.mode === 'shortBreak') {
-      pomoStatus.textContent = "☕ استراحت کوتاه";
-    } else if (pomoState.mode === 'longBreak') {
-      pomoStatus.textContent = "🌴 استراحت طولانی";
-    }
-  }
-
-  function switchPomoMode(nextMode) {
-    pomoState.mode = nextMode;
-    if (nextMode === 'work') {
-      pomoState.timeLeft = pomoConfig.work * 60;
-    } else if (nextMode === 'shortBreak') {
-      pomoState.timeLeft = pomoConfig.shortBreak * 60;
-    } else if (nextMode === 'longBreak') {
-      pomoState.timeLeft = pomoConfig.longBreak * 60;
-    }
-    updatePomoDisplay();
-  }
-
-  function tickPomo() {
-    if (pomoState.timeLeft > 0) {
-      pomoState.timeLeft--;
-      updatePomoDisplay();
-    } else {
-      playAlertBeep();
-      clearInterval(pomoState.timerId);
-      pomoState.isRunning = false;
-      pomoStartBtn.textContent = "▶ شروع تمرکز";
-
-      if (pomoState.mode === 'work') {
-        pomoState.completedCycles++;
-        if (pomoState.completedCycles >= pomoConfig.maxCycles) {
-          pomoState.completedCycles = 0;
-          switchPomoMode('longBreak');
-        } else {
-          switchPomoMode('shortBreak');
-        }
-      } else {
-        switchPomoMode('work');
-      }
-      renderPomoDots();
-    }
-  }
-
-  pomoStartBtn.addEventListener("click", function(){
-    initAudioCtx();
-    if (pomoState.isRunning) {
-      clearInterval(pomoState.timerId);
-      pomoState.isRunning = false;
-      pomoStartBtn.textContent = "▶ ادامه";
-    } else {
-      pomoState.isRunning = true;
-      pomoStartBtn.textContent = "⏸ توقف";
-      pomoState.timerId = setInterval(tickPomo, 1000);
-    }
-    updatePomoDisplay();
-  });
-
-  document.getElementById("pomo-reset-btn").addEventListener("click", function(){
-    clearInterval(pomoState.timerId);
-    pomoState.isRunning = false;
-    pomoState.completedCycles = 0;
-    pomoStartBtn.textContent = "▶ شروع تمرکز";
-    switchPomoMode('work');
-    renderPomoDots();
-  });
-
-  /* Quick Preset Buttons */
-  document.querySelectorAll('.pomo-quick-btn').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var mins = parseInt(this.getAttribute('data-min'), 10);
-      pomoConfig.work = mins;
-      saveJSON(LS.pomoConfig, pomoConfig);
-      
-      clearInterval(pomoState.timerId);
-      pomoState.isRunning = false;
-      pomoStartBtn.textContent = "▶ شروع تمرکز";
-      switchPomoMode('work');
-    });
-  });
-
-  /* Pomodoro Settings Modal */
-  var pomoModal = document.getElementById("pomo-modal");
-  document.getElementById("pomo-settings-btn").addEventListener("click", function(){
-    document.getElementById("cfg-work").value = pomoConfig.work;
-    document.getElementById("cfg-short").value = pomoConfig.shortBreak;
-    document.getElementById("cfg-long").value = pomoConfig.longBreak;
-    document.getElementById("cfg-cycles").value = pomoConfig.maxCycles;
-    pomoModal.classList.add("active");
-  });
-
-  document.getElementById("cancel-pomo-modal").addEventListener("click", function(){
-    pomoModal.classList.remove("active");
-  });
-
-  document.getElementById("pomo-settings-form").addEventListener("submit", function(e){
-    e.preventDefault();
-    pomoConfig.work = parseInt(document.getElementById("cfg-work").value, 10) || 25;
-    pomoConfig.shortBreak = parseInt(document.getElementById("cfg-short").value, 10) || 5;
-    pomoConfig.longBreak = parseInt(document.getElementById("cfg-long").value, 10) || 15;
-    pomoConfig.maxCycles = parseInt(document.getElementById("cfg-cycles").value, 10) || 4;
-
-    saveJSON(LS.pomoConfig, pomoConfig);
-    pomoModal.classList.remove("active");
-
-    clearInterval(pomoState.timerId);
-    pomoState.isRunning = false;
-    pomoStartBtn.textContent = "▶ شروع تمرکز";
-    switchPomoMode('work');
-    renderPomoDots();
-  });
-
-  /* ---------- Init App ---------- */
+  // Initialization
+  updateDayTabsUI();
   renderSchedule();
   renderNotes();
-  renderPomoDots();
-  updatePomoDisplay();
   renderQuickLinks();
 
 })();
