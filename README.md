@@ -1,4 +1,4 @@
-# 🏛️ Stellarium Planner V3.2 / V4.0
+# 🏛️ Stellarium Planner V3.2 /
 
 > **Daily Study Gazette & Execution Engine**  
 > یک داشبورد تک‌فایلی (Single-File)، مدرن و ایزوله برای مدیریت زمان، برنامه‌ریزی روزانه، پومودورو و ردیابی پیشرفت کنکور ۱۴۰۵ / ۱۴۰۶ با زیبایی‌شناسی Dark Academia و Minimalist Eleganza.
