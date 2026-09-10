@@ -90,9 +90,12 @@
     line-height:1.6;
     overflow-x: hidden;
   }
+  html[lang="en"] body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
   ::selection{background:var(--accent); color:var(--accent-ink);}
   a{color:inherit; text-decoration:none;}
-  button, input, select, textarea { font-family:'Samim', Tahoma, sans-serif; }
+  button, input, select, textarea { font-family: inherit; }
 
   .app{
     display:flex;
@@ -142,18 +145,20 @@
     transition: all 0.25s var(--ease-smooth);
   }
   .theme-select:hover { border-color:var(--accent); transform: translateY(-1px); }
-  .theme-toggle{
+  .theme-toggle, .lang-toggle{
     background:var(--paper-2);
     border:1px solid var(--hairline);
     border-radius:var(--radius-pill);
-    width:38px;height:38px;
+    height:38px;
     display:flex;align-items:center;justify-content:center;
     cursor:pointer;
     font-size:16px;
     transition: all 0.3s var(--ease-out-back);
   }
-  .theme-toggle:hover{ transform:scale(1.12) rotate(-12deg); border-color:var(--accent); }
-  .theme-toggle:active{ transform:scale(0.92); }
+  .theme-toggle { width:38px; }
+  .lang-toggle { padding: 0 12px; font-weight: 800; font-size: 12px; letter-spacing: 0.5px; }
+  .theme-toggle:hover, .lang-toggle:hover{ transform:scale(1.12); border-color:var(--accent); }
+  .theme-toggle:active, .lang-toggle:active{ transform:scale(0.92); }
 
   .masthead-main{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:10px; }
   .masthead-title{ font-size:42px; font-weight:900; letter-spacing:0.5px; margin:0; line-height:1; }
@@ -161,6 +166,7 @@
   .masthead-sub{ margin:8px 0 0 0; font-size:13.5px; color:var(--text-2); display:flex; align-items:center; gap:10px; }
   .masthead-sub .dot{ width:5px;height:5px; border-radius:50%; background:var(--accent); display:inline-block; }
   .vol-meta{ text-align:left; font-size:12px; color:var(--text-2); line-height:1.4; direction:ltr; unicode-bidi:isolate; }
+  html[lang="en"] .vol-meta { text-align: right; }
 
   /* ===== Sidebar & Main ===== */
   .sidebar{ width:300px; flex:0 0 300px; display:flex; flex-direction:column; gap:16px; }
@@ -210,13 +216,13 @@
     background:var(--paper-2); border-radius:var(--radius-md); text-align:center; padding:10px 4px; border:1px solid var(--hairline); transition: all 0.25s var(--ease-smooth);
   }
   .countdown-unit:hover { border-color: var(--accent); transform: translateY(-2px); }
-  .countdown-unit .num{ font-size:20px; font-weight:900; color:var(--accent); display:block; direction:ltr; font-family:'Samim', Tahoma, sans-serif; }
+  .countdown-unit .num{ font-size:20px; font-weight:900; color:var(--accent); display:block; direction:ltr; }
   .countdown-unit .lbl{ font-size:10px; color:var(--text-2); }
 
   /* Active Session Widget */
   .active-session-widget { display: flex; flex-direction: column; gap: 8px; text-align: center; }
   .session-title { font-weight: 800; font-size: 14px; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .session-timer-display { font-size: 32px; font-weight: 900; color: var(--accent); direction: ltr; letter-spacing: 1px; font-family: 'Samim', Tahoma, sans-serif; }
+  .session-timer-display { font-size: 32px; font-weight: 900; color: var(--accent); direction: ltr; letter-spacing: 1px; }
   .session-progress-bar { background: var(--paper-2); border: 1px solid var(--hairline); border-radius: var(--radius-pill); height: 10px; overflow: hidden; }
   .session-progress-fill { height: 100%; background: var(--accent); width: 0%; border-radius: var(--radius-pill); transition: width 0.4s ease; }
   .session-controls { display: flex; gap: 6px; justify-content: center; margin-top: 4px; }
@@ -224,12 +230,12 @@
   /* Time Widget */
   .time-widget { display: flex; flex-direction: column; gap: 10px; }
   .time-input-wrapper input[type="time"] {
-    width: 100%; padding: 10px 14px; border-radius: var(--radius-md); border: 1px solid var(--hairline); background: var(--paper-2); color: var(--text); font-size: 16px; font-weight: 800; text-align: center; outline: none; transition: all 0.25s var(--ease-smooth); font-family: 'Samim', Tahoma, sans-serif;
+    width: 100%; padding: 10px 14px; border-radius: var(--radius-md); border: 1px solid var(--hairline); background: var(--paper-2); color: var(--text); font-size: 16px; font-weight: 800; text-align: center; outline: none; transition: all 0.25s var(--ease-smooth);
   }
   .time-input-wrapper input[type="time"]:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(215, 65, 8, 0.15); }
   .preset-pills { display: flex; gap: 6px; justify-content: space-between; }
   .pill-btn {
-    flex: 1; background: var(--paper-2); border: 1px solid var(--hairline); color: var(--text-2); border-radius: var(--radius-pill); padding: 6px 0; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.25s var(--ease-smooth); text-align: center; font-family: 'Samim', Tahoma, sans-serif;
+    flex: 1; background: var(--paper-2); border: 1px solid var(--hairline); color: var(--text-2); border-radius: var(--radius-pill); padding: 6px 0; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.25s var(--ease-smooth); text-align: center;
   }
   .pill-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
@@ -341,16 +347,20 @@
   tbody tr{ background:var(--paper-2); transition: transform 0.25s var(--ease-smooth), opacity 0.3s ease; }
   tbody tr:hover{ transform: scale(1.008) translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
   tbody tr.active-running { box-shadow: 0 0 0 2px var(--accent); }
-  tbody tr td:first-child{border-radius:0 var(--radius-md) var(--radius-md) 0;}
-  tbody tr td:last-child{border-radius:var(--radius-md) 0 0 var(--radius-md);}
+  
+  /* LTR / RTL Border Radius Adjustments for Table Cells */
+  html[dir="rtl"] tbody tr td:first-child{border-radius:0 var(--radius-md) var(--radius-md) 0; border-right:1px solid var(--hairline);}
+  html[dir="rtl"] tbody tr td:last-child{border-radius:var(--radius-md) 0 0 var(--radius-md); border-left:1px solid var(--hairline);}
+  
+  html[dir="ltr"] tbody tr td:first-child{border-radius:var(--radius-md) 0 0 var(--radius-md); border-left:1px solid var(--hairline);}
+  html[dir="ltr"] tbody tr td:last-child{border-radius:0 var(--radius-md) var(--radius-md) 0; border-right:1px solid var(--hairline);}
+
   tbody td{ padding:12px 14px; vertical-align:middle; border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline); }
-  tbody td:first-child{border-right:1px solid var(--hairline);}
-  tbody td:last-child{border-left:1px solid var(--hairline);}
 
   .col-check{width:44px; text-align:center;}
-  .col-time{width:115px; text-align:center; font-weight:800; color:var(--accent); direction:ltr; font-size:13px; font-family: 'Samim', Tahoma, sans-serif;}
+  .col-time{width:115px; text-align:center; font-weight:800; color:var(--accent); direction:ltr; font-size:13px;}
   .col-subject{width:220px; font-weight:800;}
-  .col-duration{width:70px; text-align:center; color:var(--text-2); font-size:12px; direction:ltr; font-family: 'Samim', Tahoma, sans-serif;}
+  .col-duration{width:70px; text-align:center; color:var(--text-2); font-size:12px; direction:ltr;}
   .col-details{color:var(--text-2); font-size:13.5px;}
   .col-details[contenteditable="true"]{ outline:none; border-radius:var(--radius-sm); padding:4px 6px; }
   .col-details[contenteditable="true"]:focus{ background:var(--paper); box-shadow:inset 0 0 0 1px var(--accent); }
@@ -391,13 +401,15 @@
   }
   .focus-overlay.active { opacity: 1; pointer-events: auto; }
   .focus-overlay .task-name { color: var(--text); font-size: 1.5rem; font-weight: 800; text-align: center; max-width: 80%; }
-  .focus-overlay .timer-display { font-size: clamp(4rem, 18vw, 9rem); font-weight: 900; color: var(--accent); direction: ltr; font-family: 'Samim', Tahoma, sans-serif; letter-spacing: 2px; }
+  .focus-overlay .timer-display { font-size: clamp(4rem, 18vw, 9rem); font-weight: 900; color: var(--accent); direction: ltr; letter-spacing: 2px; }
   .focus-overlay .focus-progress-wrapper { width: 300px; height: 12px; background: rgba(255,255,255,0.1); border-radius: var(--radius-pill); overflow: hidden; border: 1px solid var(--hairline); }
   .focus-overlay .focus-progress-bar { height: 100%; background: var(--accent); width: 0%; border-radius: var(--radius-pill); transition: width 0.4s ease; }
   .focus-controls { display: flex; gap: 1rem; align-items: center; }
   .focus-btn { background: var(--paper); color: var(--text); border: 1px solid var(--hairline); padding: 12px 24px; border-radius: var(--radius-pill); font-weight: 800; font-size: 1rem; cursor: pointer; transition: all 0.25s var(--ease-smooth); }
   .focus-btn:hover { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); transform: scale(1.05); }
-  .focus-close-btn { position: absolute; top: 24px; left: 24px; background: transparent; border: 1px solid var(--hairline); color: var(--text-2); font-size: 1.2rem; border-radius: 50%; width: 44px; height: 44px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; }
+  .focus-close-btn { position: absolute; top: 24px; background: transparent; border: 1px solid var(--hairline); color: var(--text-2); font-size: 1.2rem; border-radius: 50%; width: 44px; height: 44px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; }
+  html[dir="rtl"] .focus-close-btn { left: 24px; }
+  html[dir="ltr"] .focus-close-btn { right: 24px; }
   .focus-close-btn:hover { color: var(--accent); border-color: var(--accent); transform: scale(1.1); }
 
   footer.foot{ max-width:1320px; margin:24px auto 0 auto; text-align:center; font-size:11.5px; color:var(--text-2); padding:12px; }
@@ -430,11 +442,12 @@
   <div class="masthead-top">
     <span class="date-line" id="jalali-date-display">Vol. CXLVI · No. 1</span>
     <div class="controls-group">
+      <button class="lang-toggle" id="lang-toggle" title="تغییر زبان / Switch Language">EN</button>
       <select class="theme-select" id="theme-palette-select" title="انتخاب پالت رنگی">
-        <option value="classic">☕ آکادمیا (اصلی)</option>
-        <option value="emerald">🌲 زمردی (Velvet)</option>
-        <option value="teal">🌊 سورمه‌ای (Indigo)</option>
-        <option value="violet">🔮 بنفش (Neon)</option>
+        <option value="classic" data-i18n="opt_classic">☕ آکادمیا (اصلی)</option>
+        <option value="emerald" data-i18n="opt_emerald">🌲 زمردی (Velvet)</option>
+        <option value="teal" data-i18n="opt_teal">🌊 سورمه‌ای (Indigo)</option>
+        <option value="violet" data-i18n="opt_violet">🔮 بنفش (Neon)</option>
       </select>
       <button class="theme-toggle" id="theme-toggle" title="حالت شب/روز">🌙</button>
     </div>
@@ -442,9 +455,9 @@
   <div class="masthead-main">
     <div>
       <h1 class="masthead-title">Stellarium <span>Planner</span></h1>
-      <p class="masthead-sub">The Daily Edition <span class="dot"></span> کنکور ۱۴۰۵/۱۴۰۶</p>
+      <p class="masthead-sub"><span data-i18n="m_sub_title">The Daily Edition</span> <span class="dot"></span> <span data-i18n="m_sub_exam">کنکور ۱۴۰۵/۱۴۰۶</span></p>
     </div>
-    <div class="vol-meta">Est. 2025<br>Daily Study Gazette</div>
+    <div class="vol-meta">Est. 2025<br><span data-i18n="m_gazette">Daily Study Gazette</span></div>
   </div>
 </div>
 
@@ -453,22 +466,22 @@
 
     <!-- Active Session / Pomodoro Widget -->
     <div class="card">
-      <h3>Active Session</h3>
+      <h3 data-i18n="h_active_session">Active Session</h3>
       <div class="active-session-widget">
-        <div class="session-title" id="session-title-display">هیچ پارتی فعال نیست</div>
+        <div class="session-title" id="session-title-display" data-i18n="no_active_part">هیچ پارتی فعال نیست</div>
         <div class="session-timer-display" id="session-timer-display">00:00</div>
         <div class="session-progress-bar">
           <div class="session-progress-fill" id="session-progress-fill"></div>
         </div>
         <div class="session-controls">
-          <button class="btn btn-sm" id="widget-toggle-timer-btn" disabled>شروع / توقف</button>
-          <button class="btn btn-sm btn-ghost" id="open-focus-overlay-btn">🎯 فوکوس</button>
+          <button class="btn btn-sm" id="widget-toggle-timer-btn" disabled data-i18n="btn_start_pause">شروع / توقف</button>
+          <button class="btn btn-sm btn-ghost" id="open-focus-overlay-btn" data-i18n="btn_focus">🎯 فوکوس</button>
         </div>
       </div>
     </div>
 
     <div class="card">
-      <h3>Dynamic Time</h3>
+      <h3 data-i18n="h_dynamic_time">Dynamic Time</h3>
       <div class="time-widget">
         <div class="time-input-wrapper">
           <input type="time" id="start-time" value="05:00">
@@ -479,41 +492,41 @@
           <button class="pill-btn" data-time="06:00">06:00</button>
           <button class="pill-btn" data-time="07:00">07:00</button>
         </div>
-        <button class="btn btn-block" id="apply-time">بروزرسانی جدول</button>
+        <button class="btn btn-block" id="apply-time" data-i18n="btn_update_table">بروزرسانی جدول</button>
       </div>
     </div>
 
     <div class="card">
-      <h3>The Countdown</h3>
+      <h3 data-i18n="h_countdown">The Countdown</h3>
       <div class="countdown-grid">
-        <div class="countdown-unit"><span class="num" id="cd-days">--</span><span class="lbl">روز</span></div>
-        <div class="countdown-unit"><span class="num" id="cd-hours">--</span><span class="lbl">ساعت</span></div>
-        <div class="countdown-unit"><span class="num" id="cd-mins">--</span><span class="lbl">دقیقه</span></div>
-        <div class="countdown-unit"><span class="num" id="cd-secs">--</span><span class="lbl">ثانیه</span></div>
+        <div class="countdown-unit"><span class="num" id="cd-days">--</span><span class="lbl" data-i18n="lbl_days">روز</span></div>
+        <div class="countdown-unit"><span class="num" id="cd-hours">--</span><span class="lbl" data-i18n="lbl_hours">ساعت</span></div>
+        <div class="countdown-unit"><span class="num" id="cd-mins">--</span><span class="lbl" data-i18n="lbl_minutes">دقیقه</span></div>
+        <div class="countdown-unit"><span class="num" id="cd-secs">--</span><span class="lbl" data-i18n="lbl_seconds">ثانیه</span></div>
       </div>
     </div>
 
     <div class="card">
-      <h3>Progress</h3>
+      <h3 data-i18n="h_progress">Progress</h3>
       <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
-      <div class="progress-label"><span>پیشرفت امروز</span><span id="progress-pct">۰٪</span></div>
+      <div class="progress-label"><span data-i18n="lbl_today_progress">پیشرفت امروز</span><span id="progress-pct">۰٪</span></div>
       <div class="time-stats" id="time-stats-label">مجموع مطالعه: ۰ ساعت</div>
-      <button class="btn btn-ghost btn-block" id="reset-day">بازنشانی تیک‌های این روز</button>
-      <button class="btn btn-danger-ghost btn-block" id="reset-full">بازنشانی برنامه این روز</button>
+      <button class="btn btn-ghost btn-block" id="reset-day" data-i18n="btn_reset_checks">بازنشانی تیک‌های این روز</button>
+      <button class="btn btn-danger-ghost btn-block" id="reset-full" data-i18n="btn_reset_schedule">بازنشانی برنامه این روز</button>
     </div>
 
     <div class="card">
-      <h3>Loqme</h3>
+      <h3 data-i18n="h_loqme">Loqme</h3>
       <div class="note-input">
-        <input type="text" id="note-input" placeholder="یک لقمه بنویس و Enter بزن…">
+        <input type="text" id="note-input" placeholder="یک لقمه بنویس و Enter بزن…" data-i18n-ph="ph_note_input">
       </div>
       <ul id="notes-list"></ul>
-      <div id="notes-empty">هنوز لقمه‌ای اضافه نشده.</div>
+      <div id="notes-empty" data-i18n="notes_empty">هنوز لقمه‌ای اضافه نشده.</div>
     </div>
 
     <div class="card">
       <h3>
-        Quick Access 
+        <span data-i18n="h_quick_access">Quick Access</span>
         <button class="icon-btn-inline" id="manage-links-btn" title="مدیریت دکمه‌ها">⚙️</button>
       </h3>
       <div class="link-grid" id="link-grid"></div>
@@ -528,28 +541,28 @@
       
       <!-- Day Selector Tab Bar -->
       <div class="day-tabs-wrapper" id="day-tabs-wrapper">
-        <button class="day-tab-btn" data-day="sat">شنبه</button>
-        <button class="day-tab-btn" data-day="sun">یکشنبه</button>
-        <button class="day-tab-btn" data-day="mon">دوشنبه</button>
-        <button class="day-tab-btn" data-day="tue">سه‌شنبه</button>
-        <button class="day-tab-btn" data-day="wed">چهارشنبه</button>
-        <button class="day-tab-btn" data-day="thu">پنج‌شنبه</button>
-        <button class="day-tab-btn" data-day="fri">جمعه</button>
+        <button class="day-tab-btn" data-day="sat" data-i18n="d_sat">شنبه</button>
+        <button class="day-tab-btn" data-day="sun" data-i18n="d_sun">یکشنبه</button>
+        <button class="day-tab-btn" data-day="mon" data-i18n="d_mon">دوشنبه</button>
+        <button class="day-tab-btn" data-day="tue" data-i18n="d_tue">سه‌شنبه</button>
+        <button class="day-tab-btn" data-day="wed" data-i18n="d_wed">چهارشنبه</button>
+        <button class="day-tab-btn" data-day="thu" data-i18n="d_thu">پنج‌شنبه</button>
+        <button class="day-tab-btn" data-day="fri" data-i18n="d_fri">جمعه</button>
       </div>
 
       <div class="schedule-header-actions">
         <h2 id="schedule-day-title">برنامه زمانی روزانه</h2>
-        <button class="btn" id="open-add-modal">+ افزودن پارت</button>
+        <button class="btn" id="open-add-modal" data-i18n="btn_add_part">+ افزودن پارت</button>
       </div>
       <table>
         <thead>
           <tr>
             <th class="col-check">✓</th>
-            <th class="col-time">زمان</th>
-            <th class="col-subject">درس</th>
-            <th class="col-duration">مدت</th>
-            <th class="col-details">جزئیات</th>
-            <th class="col-actions">عملیات</th>
+            <th class="col-time" data-i18n="th_time">زمان</th>
+            <th class="col-subject" data-i18n="th_subject">درس</th>
+            <th class="col-duration" data-i18n="th_duration">مدت</th>
+            <th class="col-details" data-i18n="th_details">جزئیات</th>
+            <th class="col-actions" data-i18n="th_actions">عملیات</th>
           </tr>
         </thead>
         <tbody id="schedule-body"></tbody>
@@ -561,45 +574,45 @@
 <!-- Focus Overlay -->
 <div class="focus-overlay" id="focus-overlay">
   <button class="focus-close-btn" id="close-focus-overlay-btn" title="خروج از حالت تمرکز">✕</button>
-  <div class="task-name" id="focus-task-name">پارتی انتخاب نشده است</div>
+  <div class="task-name" id="focus-task-name" data-i18n="no_part_selected">پارتی انتخاب نشده است</div>
   <div class="timer-display" id="focus-timer-display">00:00</div>
   <div class="focus-progress-wrapper">
     <div class="focus-progress-bar" id="focus-progress-bar"></div>
   </div>
   <div class="focus-controls">
-    <button class="focus-btn" id="focus-toggle-btn">شروع پارت</button>
-    <button class="focus-btn" id="focus-reset-btn">بازنشانی تایمر</button>
+    <button class="focus-btn" id="focus-toggle-btn" data-i18n="btn_start_session">شروع پارت</button>
+    <button class="focus-btn" id="focus-reset-btn" data-i18n="btn_reset_timer">بازنشانی تایمر</button>
   </div>
 </div>
 
 <!-- Add/Edit Part Modal -->
 <div class="modal-overlay" id="block-modal">
   <div class="modal-card">
-    <h3 id="modal-title">افزودن پارت جدید</h3>
+    <h3 id="modal-title" data-i18n="modal_add_title">افزودن پارت جدید</h3>
     <form id="block-form">
       <input type="hidden" id="modal-id">
       <div class="form-group">
-        <label for="modal-subject">عنوان پارت / موضوع</label>
-        <input type="text" id="modal-subject" required placeholder="مثال: حسابان - تست‌زنی">
+        <label for="modal-subject" data-i18n="lbl_part_title">عنوان پارت / موضوع</label>
+        <input type="text" id="modal-subject" required placeholder="مثال: حسابان - تست‌زنی" data-i18n-ph="ph_part_title">
       </div>
       <div class="form-group">
-        <label for="modal-duration">مدت زمان (دقیقه)</label>
+        <label for="modal-duration" data-i18n="lbl_part_duration">مدت زمان (دقیقه)</label>
         <input type="number" id="modal-duration" min="5" max="720" required value="90">
       </div>
       <div class="form-group">
-        <label for="modal-category">نوع پارت</label>
+        <label for="modal-category" data-i18n="lbl_part_type">نوع پارت</label>
         <select id="modal-category">
-          <option value="academic">اختصاصی / مطالعاتی (دارای چک‌باکس)</option>
-          <option value="break">استراحت / روتین (بدون چک‌باکس)</option>
+          <option value="academic" data-i18n="opt_academic">اختصاصی / مطالعاتی (دارای چک‌باکس)</option>
+          <option value="break" data-i18n="opt_break">استراحت / روتین (بدون چک‌باکس)</option>
         </select>
       </div>
       <div class="form-group">
-        <label for="modal-desc">جزئیات و توضیحات</label>
-        <textarea id="modal-desc" rows="2" placeholder="مبحث، منبع یا توضیحات تکمیلی..."></textarea>
+        <label for="modal-desc" data-i18n="lbl_part_details">جزئیات و توضیحات</label>
+        <textarea id="modal-desc" rows="2" placeholder="مبحث، منبع یا توضیحات تکمیلی..." data-i18n-ph="ph_part_details"></textarea>
       </div>
       <div class="modal-actions">
-        <button type="button" class="btn btn-ghost" id="cancel-modal">انصراف</button>
-        <button type="submit" class="btn">ذخیره</button>
+        <button type="button" class="btn btn-ghost" id="cancel-modal" data-i18n="btn_cancel">انصراف</button>
+        <button type="submit" class="btn" data-i18n="btn_save">ذخیره</button>
       </div>
     </form>
   </div>
@@ -608,39 +621,198 @@
 <!-- Quick Access Customization Modal -->
 <div class="modal-overlay" id="links-modal">
   <div class="modal-card">
-    <h3>مدیریت لینک‌های سریع (Quick Access)</h3>
+    <h3 data-i18n="modal_manage_links">مدیریت لینک‌های سریع (Quick Access)</h3>
     <div class="links-manage-list" id="links-manage-list"></div>
     <hr style="border: 0; border-top: 1px solid var(--hairline); margin: 12px 0;">
-    <h4 id="link-form-title" style="margin: 0 0 10px 0; font-size: 13px; color: var(--accent);">افزودن لینک جدید</h4>
+    <h4 id="link-form-title" style="margin: 0 0 10px 0; font-size: 13px; color: var(--accent);" data-i18n="h_add_link">افزودن لینک جدید</h4>
     <form id="link-form">
       <input type="hidden" id="link-edit-index" value="-1">
       <div class="form-group">
-        <label for="link-label-input">عنوان دکمه</label>
-        <input type="text" id="link-label-input" placeholder="مثلاً: مرور فیزیک" required>
+        <label for="link-label-input" data-i18n="lbl_btn_title">عنوان دکمه</label>
+        <input type="text" id="link-label-input" placeholder="مثلاً: مرور فیزیک" data-i18n-ph="ph_link_label" required>
       </div>
       <div class="form-group">
-        <label for="link-url-input">آدرس لینک (URL)</label>
+        <label for="link-url-input" data-i18n="lbl_link_url">آدرس لینک (URL)</label>
         <input type="url" id="link-url-input" placeholder="https://..." required dir="ltr">
       </div>
       <div class="modal-actions">
-        <button type="button" class="btn btn-ghost" id="cancel-link-edit" style="display:none;">انصراف از ویرایش</button>
-        <button type="submit" class="btn" id="link-submit-btn">افزودن لینک</button>
-        <button type="button" class="btn btn-ghost" id="close-links-modal">بستن</button>
+        <button type="button" class="btn btn-ghost" id="cancel-link-edit" style="display:none;" data-i18n="btn_cancel_edit">انصراف از ویرایش</button>
+        <button type="submit" class="btn" id="link-submit-btn" data-i18n="btn_add_link">افزودن لینک</button>
+        <button type="button" class="btn btn-ghost" id="close-links-modal" data-i18n="btn_close">بستن</button>
       </div>
     </form>
   </div>
 </div>
 
-<footer class="foot">Stellarium Planner v4.0 — برنامه‌ریز جامع کنکور ریاضی ۱۴۰۵/۱۴۰۶</footer>
+<footer class="foot" data-i18n="footer_text">Stellarium Planner v4.0 — برنامه‌ریز جامع کنکور ریاضی ۱۴۰۵/۱۴۰۶</footer>
 
 <script>
 (function(){
   "use strict";
 
+  /* ---------- Translation Dictionary ---------- */
+  var i18n = {
+    fa: {
+      lang_code: "fa",
+      dir: "rtl",
+      lang_btn: "EN",
+      date_fallback: "امروز · روز جدید مطالعه",
+      opt_classic: "☕ آکادمیا (اصلی)",
+      opt_emerald: "🌲 زمردی (Velvet)",
+      opt_teal: "🌊 سورمه‌ای (Indigo)",
+      opt_violet: "🔮 بنفش (Neon)",
+      m_sub_title: "The Daily Edition",
+      m_sub_exam: "کنکور ۱۴۰۵/۱۴۰۶",
+      m_gazette: "Daily Study Gazette",
+      h_active_session: "Active Session",
+      no_active_part: "هیچ پارتی فعال نیست",
+      btn_start_pause: "شروع / توقف",
+      btn_focus: "🎯 فوکوس",
+      h_dynamic_time: "Dynamic Time",
+      btn_update_table: "بروزرسانی جدول",
+      h_countdown: "The Countdown",
+      lbl_days: "روز",
+      lbl_hours: "ساعت",
+      lbl_minutes: "دقیقه",
+      lbl_seconds: "ثانیه",
+      h_progress: "Progress",
+      lbl_today_progress: "پیشرفت امروز",
+      btn_reset_checks: "بازنشانی تیک‌های این روز",
+      btn_reset_schedule: "بازنشانی برنامه این روز",
+      h_loqme: "Loqme",
+      ph_note_input: "یک لقمه بنویس و Enter بزن…",
+      notes_empty: "هنوز لقمه‌ای اضافه نشده.",
+      h_quick_access: "Quick Access",
+      d_sat: "شنبه", d_sun: "یکشنبه", d_mon: "دوشنبه", d_tue: "سه‌شنبه", d_wed: "چهارشنبه", d_thu: "پنج‌شنبه", d_fri: "جمعه",
+      schedule_title: "برنامه زمانی ",
+      btn_add_part: "+ افزودن پارت",
+      th_time: "زمان", th_subject: "درس", th_duration: "مدت", th_details: "جزئیات", th_actions: "عملیات",
+      no_part_selected: "پارتی انتخاب نشده است",
+      btn_start_session: "شروع پارت",
+      btn_reset_timer: "بازنشانی تایمر",
+      modal_add_title: "افزودن پارت جدید",
+      modal_edit_title: "ویرایش پارت",
+      lbl_part_title: "عنوان پارت / موضوع",
+      ph_part_title: "مثال: حسابان - تست‌زنی",
+      lbl_part_duration: "مدت زمان (دقیقه)",
+      lbl_part_type: "نوع پارت",
+      opt_academic: "اختصاصی / مطالعاتی (دارای چک‌باکس)",
+      opt_break: "استراحت / روتین (بدون چک‌باکس)",
+      lbl_part_details: "جزئیات و توضیحات",
+      ph_part_details: "مبحث، منبع یا توضیحات تکمیلی...",
+      btn_cancel: "انصراف",
+      btn_save: "ذخیره",
+      modal_manage_links: "مدیریت لینک‌های سریع (Quick Access)",
+      h_add_link: "افزودن لینک جدید",
+      h_edit_link: "ویرایش لینک",
+      lbl_btn_title: "عنوان دکمه",
+      ph_link_label: "مثلاً: مرور فیزیک",
+      lbl_link_url: "آدرس لینک (URL)",
+      btn_cancel_edit: "انصراف از ویرایش",
+      btn_add_link: "افزودن لینک",
+      btn_save_changes: "ذخیره تغییرات",
+      btn_close: "بستن",
+      footer_text: "Stellarium Planner v4.0 — برنامه‌ریز جامع کنکور ریاضی ۱۴۰۵/۱۴۰۶",
+      total_study: "مجموع مطالعه",
+      hours_unit: "ساعت",
+      timer_active_part: "پارت فعال",
+      btn_pause: "توقف",
+      btn_resume: "ادامه",
+      btn_stop_part: "توقف پارت",
+      btn_resume_part: "ادامه پارت",
+      alert_session_complete: "پارت مطالعه به پایان رسید! خسته نباشید.",
+      confirm_delete_part: "آیا از حذف این پارت اطمینان دارید؟",
+      confirm_reset_checks: "تیک‌های {day} پاک شوند؟",
+      confirm_reset_schedule: "آیا از بازنشانی کلی برنامه روز {day} به حالت پیش‌فرض مطمئن هستید؟",
+      no_links_registered: "هیچ لینکی ثبت نشده است.",
+      confirm_delete_link: "آیا این دکمه حذف شود؟",
+      play_btn_title: "شروع پارت مطالعاتی"
+    },
+    en: {
+      lang_code: "en",
+      dir: "ltr",
+      lang_btn: "FA",
+      date_fallback: "Today · New Study Day",
+      opt_classic: "☕ Academia (Classic)",
+      opt_emerald: "🌲 Velvet (Emerald)",
+      opt_teal: "🌊 Indigo (Teal)",
+      opt_violet: "🔮 Neon (Violet)",
+      m_sub_title: "The Daily Edition",
+      m_sub_exam: "Entrance Exam 2026/2027",
+      m_gazette: "Daily Study Gazette",
+      h_active_session: "Active Session",
+      no_active_part: "No Active Session",
+      btn_start_pause: "Start / Pause",
+      btn_focus: "🎯 Focus",
+      h_dynamic_time: "Dynamic Time",
+      btn_update_table: "Update Schedule",
+      h_countdown: "The Countdown",
+      lbl_days: "Days",
+      lbl_hours: "Hours",
+      lbl_minutes: "Mins",
+      lbl_seconds: "Secs",
+      h_progress: "Progress",
+      lbl_today_progress: "Today's Progress",
+      btn_reset_checks: "Reset Day Checks",
+      btn_reset_schedule: "Reset Day Schedule",
+      h_loqme: "Bites / Notes",
+      ph_note_input: "Write a note & hit Enter...",
+      notes_empty: "No notes added yet.",
+      h_quick_access: "Quick Access",
+      d_sat: "Saturday", d_sun: "Sunday", d_mon: "Monday", d_tue: "Tuesday", d_wed: "Wednesday", d_thu: "Thursday", d_fri: "Friday",
+      schedule_title: "Schedule for ",
+      btn_add_part: "+ Add Part",
+      th_time: "Time", th_subject: "Subject", th_duration: "Duration", th_details: "Details", th_actions: "Actions",
+      no_part_selected: "No session selected",
+      btn_start_session: "Start Part",
+      btn_reset_timer: "Reset Timer",
+      modal_add_title: "Add New Part",
+      modal_edit_title: "Edit Part",
+      lbl_part_title: "Part Title / Subject",
+      ph_part_title: "e.g., Calculus - Practice",
+      lbl_part_duration: "Duration (minutes)",
+      lbl_part_type: "Part Type",
+      opt_academic: "Academic / Study (With Checkbox)",
+      opt_break: "Break / Routine (No Checkbox)",
+      lbl_part_details: "Details & Notes",
+      ph_part_details: "Topic, source or extra notes...",
+      btn_cancel: "Cancel",
+      btn_save: "Save",
+      modal_manage_links: "Manage Quick Access Links",
+      h_add_link: "Add New Link",
+      h_edit_link: "Edit Link",
+      lbl_btn_title: "Button Title",
+      ph_link_label: "e.g., Physics Review",
+      lbl_link_url: "Link URL",
+      btn_cancel_edit: "Cancel Edit",
+      btn_add_link: "Add Link",
+      btn_save_changes: "Save Changes",
+      btn_close: "Close",
+      footer_text: "Stellarium Planner v4.0 — Math Konkur Comprehensive Planner 2026/2027",
+      total_study: "Total Study",
+      hours_unit: "hrs",
+      timer_active_part: "Active Part",
+      btn_pause: "Pause",
+      btn_resume: "Resume",
+      btn_stop_part: "Pause Part",
+      btn_resume_part: "Resume Part",
+      alert_session_complete: "Study part completed! Well done.",
+      confirm_delete_part: "Are you sure you want to delete this part?",
+      confirm_reset_checks: "Clear all checkmarks for {day}?",
+      confirm_reset_schedule: "Are you sure you want to reset {day}'s schedule to default?",
+      no_links_registered: "No links configured yet.",
+      confirm_delete_link: "Are you sure you want to delete this link?",
+      play_btn_title: "Start study session"
+    }
+  };
+
   /* ---------- Jalali Date Calculation & Current Day Mapping ---------- */
   var dayKeys = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
-  var dayNames = {
+  var dayNamesFA = {
     sat: "شنبه", sun: "یکشنبه", mon: "دوشنبه", tue: "سه‌شنبه", wed: "چهارشنبه", thu: "پنج‌شنبه", fri: "جمعه"
+  };
+  var dayNamesEN = {
+    sat: "Saturday", sun: "Sunday", mon: "Monday", tue: "Tuesday", wed: "Wednesday", thu: "Thursday", fri: "Friday"
   };
 
   function getCurrentDayKey() {
@@ -650,21 +822,28 @@
 
   var currentActiveDay = getCurrentDayKey();
 
-  function getPersianDateStr() {
+  function getFormattedDateStr(lang) {
     try {
       var now = new Date();
-      var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      var persianDate = new Intl.DateTimeFormat('fa-IR', options).format(now);
-      return persianDate;
+      if(lang === 'en') {
+        var optionsEN = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+        return new Intl.DateTimeFormat('en-US', optionsEN).format(now);
+      } else {
+        var optionsFA = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        return new Intl.DateTimeFormat('fa-IR', optionsFA).format(now);
+      }
     } catch(e) {
-      return "امروز · روز جدید مطالعه";
+      return i18n[lang].date_fallback;
     }
   }
-  var jalaliElem = document.getElementById("jalali-date-display");
-  if(jalaliElem) jalaliElem.textContent = getPersianDateStr();
+
+  function updateDateDisplay() {
+    var jalaliElem = document.getElementById("jalali-date-display");
+    if(jalaliElem) jalaliElem.textContent = getFormattedDateStr(currentLang);
+  }
 
   /* ---------- Default Data & Constants ---------- */
-  var defaultRows = [
+  var defaultRowsFA = [
     {id:1,  duration:35,  title:"🌅 بیداری و آماده‌سازی",            details:"شروع روز، شستن صورت و آمادگی کامل ذهن", checkbox:false},
     {id:2,  duration:100, title:"📚 پارت 1 (اختصاصی 1 - سنگین)",     details:"حسابان / فیزیک - مطالعه سنگین و تست‌زنی اولیه", checkbox:true},
     {id:3,  duration:20,  title:"🍳 استراحت و صبحانه",               details:"صرف صبحانه مقوی و بازیابی انرژی اولیه", checkbox:false},
@@ -680,21 +859,41 @@
     {id:13, duration:20,  title:"🍽️ استراحت و شام",                 details:"صرف شام و سبک‌سازی ذهن از درس‌های کنکوری", checkbox:false},
     {id:14, duration:90,  title:"🚀 پارت 7 (مهارت شخصی)",           details:"۴ روز زبان انگلیسی (فرد و جمعه) / ۳ روز برنامه‌نویسی", checkbox:true},
     {id:15, duration:40,  title:"🏃‍♂️ ورزش و دوش گرفتن",             details:"تخلیه انرژی، ریکاوری ذهن و آمادگی برای خواب عمیق", checkbox:false},
-    {id:16, duration:100, title:"🎮 استراحت مطلق و فراغت",           details:"فراغت کاملاً آزاد، تفریح، خنک کردن ذهن و آمادگی خواب", checkbox:false},
+    {id:16, duration:40, title:"🎮 استراحت مطلق و فراغت",           details:"فراغت کاملاً آزاد، تفریح، خنک کردن ذهن و آمادگی خواب", checkbox:false},
     {id:17, duration:390, title:"🌙 خواب شبانه",                    details:"۵.۵ ساعت خواب عمیق و ریکاوری کامل برای روز بعد", checkbox:false}
   ];
 
+  var defaultRowsEN = [
+    {id:1,  duration:35,  title:"🌅 Morning Routine & Preparation", details:"Wake up, refresh, and clear mind for study", checkbox:false},
+    {id:2,  duration:100, title:"📚 Session 1 (Core Subject 1)",    details:"Calculus / Physics - Deep study & practice problems", checkbox:true},
+    {id:3,  duration:20,  title:"🍳 Breakfast & Break",             details:"Nutritious breakfast and energy recovery", checkbox:false},
+    {id:4,  duration:120, title:"📖 Session 2 (Core Subject 2)",    details:"Chemistry / Geometry - Problem solving & quick review", checkbox:true},
+    {id:5,  duration:15,  title:"☕ Short Rest",                     details:"15-minute quick break and deep breathing", checkbox:false},
+    {id:6,  duration:120, title:"💻 Session 3 (Video Class)",        details:"Watch recorded online class lectures (1.5x speed)", checkbox:true},
+    {id:7,  duration:20,  title:"☕ Rest Break",                     details:"20-minute break before consolidation block", checkbox:false},
+    {id:8,  duration:120, title:"✍️ Session 4 (Consolidation)",     details:"Solve class assignments and targeted homework", checkbox:true},
+    {id:9,  duration:50,  title:"🍲 Lunch & Midday Rest",            details:"Lunch and full afternoon energy reboot", checkbox:false},
+    {id:10, duration:120, title:"📕 Session 5 (Rotational)",         details:"Literature / Arabic or additional elective practice", checkbox:true},
+    {id:11, duration:20,  title:"🍹 Snack & Refreshment",            details:"Snack break and mind reset", checkbox:false},
+    {id:12, duration:120, title:"🎯 Session 6 (Night Practice)",     details:"Timed mock tests and comprehensive daily review", checkbox:true},
+    {id:13, duration:20,  title:"🍽️ Dinner Break",                   details:"Dinner and relaxing mind away from study", checkbox:false},
+    {id:14, duration:90,  title:"🚀 Session 7 (Personal Skill)",    details:"English Language / Coding and skill acquisition", checkbox:true},
+    {id:15, duration:40,  title:"🏃‍♂️ Exercise & Shower",             details:"Physical workout, recovery, and preparation for sleep", checkbox:false},
+    {id:16, duration:40,  title:"🎮 Free Leisure Time",              details:"Unwind, light entertainment, cool down", checkbox:false},
+    {id:17, duration:390, title:"🌙 Night Sleep",                    details:"Deep restorative sleep for total recovery", checkbox:false}
+  ];
+
   var defaultLinks = [
-    {label:"حسابان", url:"https://biomaze.ir/panel/classes/categories/420b24f2-9c0f-453c-b9f7-07020191da57?year=43372291-d7d2-412e-a07c-164db8321454&display=lesson"},
-    {label:"فیزیک", url:"https://biomaze.ir/panel/classes/categories/00cbe863-6e69-408d-9f9a-183f08aae362?year=43372291-d7d2-412e-a07c-164db8321454&display=lesson"},
-    {label:"هندسه", url:"https://biomaze.ir/panel/classes/categories/6955b3e1-a33f-4de7-a55c-5e76c383a2b1?year=43372291-d7d2-412e-a07c-164db8321454&display=lesson"},
-    {label:"گسسته", url:"https://biomaze.ir/panel/classes/categories/f787fb83-eeec-467b-a5a3-88a1e7945c3e?year=43372291-d7d2-412e-a07c-164db8321454&display=lesson"},
-    {label:"شیمی", url:"https://biomaze.ir/panel/classes/categories/ec4bbf7f-f9e8-456e-bf26-dce361957dff?year=43372291-d7d2-412e-a07c-164db8321454&display=lesson"},
-    {label:"عربی", url:"https://biomaze.ir/panel/classes/categories/8074388d-f234-4486-8d23-3822f2c5a6c0?year=43372291-d7d2-412e-a07c-164db8321454&display=lesson"},
-    {label:"فارسی", url:"https://biomaze.ir/panel/classes/categories/575e527c-5d24-4408-b08d-2635c9c4f796?year=43372291-d7d2-412e-a07c-164db8321454&display=lesson"},
-    {label:"زبان / مرور", url:"https://notebook.google.com/"},
-    {label:"برنامه‌نویسی", url:"https://roadmap.sh"},
-    {label:"پنل کاربری", url:"https://biomaze.ir/panel"}
+    {label:"حسابان / Calculus", url:"https://biomaze.ir/panel/classes/categories/420b24f2-9c0f-453c-b9f7-07020191da57?year=43372291-d7d2-412e-a07c-164db8321454&display=lesson"},
+    {label:"فیزیک / Physics", url:"https://biomaze.ir/panel/classes/categories/00cbe863-6e69-408d-9f9a-183f08aae362?year=43372291-d7d2-412e-a07c-164db8321454&display=lesson"},
+    {label:"هندسه / Geometry", url:"https://biomaze.ir/panel/classes/categories/6955b3e1-a33f-4de7-a55c-5e76c383a2b1?year=43372291-d7d2-412e-a07c-164db8321454&display=lesson"},
+    {label:"گسسته / Discrete", url:"https://biomaze.ir/panel/classes/categories/f787fb83-eeec-467b-a5a3-88a1e7945c3e?year=43372291-d7d2-412e-a07c-164db8321454&display=lesson"},
+    {label:"شیمی / Chemistry", url:"https://biomaze.ir/panel/classes/categories/ec4bbf7f-f9e8-456e-bf26-dce361957dff?year=43372291-d7d2-412e-a07c-164db8321454&display=lesson"},
+    {label:"عربی / Arabic", url:"https://biomaze.ir/panel/classes/categories/8074388d-f234-4486-8d23-3822f2c5a6c0?year=43372291-d7d2-412e-a07c-164db8321454&display=lesson"},
+    {label:"فارسی / Persian", url:"https://biomaze.ir/panel/classes/categories/575e527c-5d24-4408-b08d-2635c9c4f796?year=43372291-d7d2-412e-a07c-164db8321454&display=lesson"},
+    {label:"زبان / English", url:"https://notebook.google.com/"},
+    {label:"برنامه‌نویسی / Dev", url:"https://roadmap.sh"},
+    {label:"پنل / Dashboard", url:"https://biomaze.ir/panel"}
   ];
 
   var LS = {
@@ -704,7 +903,8 @@
     notes:"stellarium_notes_v3",
     mode:"stellarium_mode_v3",
     palette:"stellarium_palette_v3",
-    links:"stellarium_quick_links_v1"
+    links:"stellarium_quick_links_v1",
+    lang:"stellarium_lang_v1"
   };
 
   /* ---------- Helper Utils ---------- */
@@ -722,6 +922,9 @@
     var map = {"0":"۰","1":"۱","2":"۲","3":"۳","4":"۴","5":"۵","6":"۶","7":"۷","8":"۸","9":"۹"};
     return String(str).replace(/[0-9]/g, function(d){ return map[d]; });
   }
+  function formatDigits(str) {
+    return currentLang === 'fa' ? toPersianDigits(str) : String(str);
+  }
   function formatMMSS(seconds){
     var m = Math.floor(seconds / 60);
     var s = seconds % 60;
@@ -732,13 +935,53 @@
   }
   function saveJSON(key, val){ try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){} }
 
+  /* ---------- Language State & Engine ---------- */
+  var currentLang = localStorage.getItem(LS.lang) || "fa";
+
+  function applyLanguage(lang) {
+    currentLang = lang;
+    try { localStorage.setItem(LS.lang, lang); } catch(e){}
+    
+    document.documentElement.setAttribute("lang", lang);
+    document.documentElement.setAttribute("dir", i18n[lang].dir);
+    document.getElementById("lang-toggle").textContent = i18n[lang].lang_btn;
+
+    // Update static data-i18n elements
+    document.querySelectorAll("[data-i18n]").forEach(function(el){
+      var key = el.getAttribute("data-i18n");
+      if(i18n[lang][key]) el.textContent = i18n[lang][key];
+    });
+
+    // Update input placeholders
+    document.querySelectorAll("[data-i18n-ph]").forEach(function(el){
+      var key = el.getAttribute("data-i18n-ph");
+      if(i18n[lang][key]) el.placeholder = i18n[lang][key];
+    });
+
+    updateDateDisplay();
+    updateDayTabsUI();
+    renderSchedule();
+    renderNotes();
+    updateSessionUI();
+    tickCountdown();
+  }
+
+  document.getElementById("lang-toggle").addEventListener("click", function(){
+    var nextLang = (currentLang === "fa") ? "en" : "fa";
+    applyLanguage(nextLang);
+  });
+
   /* ---------- Dynamic State Loading per Active Day ---------- */
   var scheduleRows = [];
   var checksState = {};
   var startTimeVal = "05:00";
 
+  function getDefaultRowsForLang() {
+    return currentLang === 'en' ? defaultRowsEN : defaultRowsFA;
+  }
+
   function loadDayData(dayKey) {
-    scheduleRows = loadJSON(LS.schedulePrefix + dayKey, defaultRows);
+    scheduleRows = loadJSON(LS.schedulePrefix + dayKey, getDefaultRowsForLang());
     checksState = loadJSON(LS.checksPrefix + dayKey, {});
     startTimeVal = loadJSON(LS.startTimePrefix + dayKey, "05:00");
   }
@@ -769,6 +1012,7 @@
 
   /* ---------- Day Switcher Navigation ---------- */
   function updateDayTabsUI() {
+    var dayNames = currentLang === 'en' ? dayNamesEN : dayNamesFA;
     document.querySelectorAll(".day-tab-btn").forEach(function(btn){
       var d = btn.getAttribute("data-day");
       if(d === currentActiveDay) {
@@ -777,7 +1021,7 @@
         btn.classList.remove("active");
       }
     });
-    document.getElementById("schedule-day-title").textContent = "برنامه زمانی " + dayNames[currentActiveDay];
+    document.getElementById("schedule-day-title").textContent = i18n[currentLang].schedule_title + dayNames[currentActiveDay];
   }
 
   document.querySelectorAll(".day-tab-btn").forEach(function(btn){
@@ -918,7 +1162,7 @@
       checksState[activeTimer.rowId] = true;
       saveJSON(LS.checksPrefix + currentActiveDay, checksState);
     }
-    alert("پارت مطالعه به پایان رسید! خسته نباشید.");
+    alert(i18n[currentLang].alert_session_complete);
     renderSchedule();
     updateProgress();
   }
@@ -935,34 +1179,34 @@
     var focusToggleBtn = document.getElementById("focus-toggle-btn");
 
     if(!activeTimer.rowId) {
-      titleDisplay.textContent = "هیچ پارتی فعال نیست";
+      titleDisplay.textContent = i18n[currentLang].no_active_part;
       timerDisplay.textContent = "00:00";
       fillDisplay.style.width = "0%";
       toggleBtn.disabled = true;
-      toggleBtn.textContent = "شروع / توقف";
+      toggleBtn.textContent = i18n[currentLang].btn_start_pause;
 
-      focusTaskName.textContent = "پارتی انتخاب نشده است";
+      focusTaskName.textContent = i18n[currentLang].no_part_selected;
       focusTimerDisplay.textContent = "00:00";
       focusProgressBar.style.width = "0%";
-      focusToggleBtn.textContent = "شروع پارت";
+      focusToggleBtn.textContent = i18n[currentLang].btn_start_session;
       return;
     }
 
     var row = scheduleRows.find(function(r){ return r.id == activeTimer.rowId; });
-    var name = row ? row.title : "پارت فعال";
+    var name = row ? row.title : i18n[currentLang].timer_active_part;
     var timeFormatted = formatMMSS(activeTimer.remainingSeconds);
     var pct = activeTimer.totalSeconds > 0 ? Math.round(((activeTimer.totalSeconds - activeTimer.remainingSeconds) / activeTimer.totalSeconds) * 100) : 0;
 
     titleDisplay.textContent = name;
-    timerDisplay.textContent = toPersianDigits(timeFormatted);
+    timerDisplay.textContent = formatDigits(timeFormatted);
     fillDisplay.style.width = pct + "%";
     toggleBtn.disabled = false;
-    toggleBtn.textContent = activeTimer.isRunning ? "توقف" : "ادامه";
+    toggleBtn.textContent = activeTimer.isRunning ? i18n[currentLang].btn_pause : i18n[currentLang].btn_resume;
 
     focusTaskName.textContent = name;
-    focusTimerDisplay.textContent = toPersianDigits(timeFormatted);
+    focusTimerDisplay.textContent = formatDigits(timeFormatted);
     focusProgressBar.style.width = pct + "%";
-    focusToggleBtn.textContent = activeTimer.isRunning ? "توقف پارت" : "ادامه پارت";
+    focusToggleBtn.textContent = activeTimer.isRunning ? i18n[currentLang].btn_stop_part : i18n[currentLang].btn_resume_part;
   }
 
   /* ---------- Focus Overlay Controls ---------- */
@@ -1015,7 +1259,7 @@
 
       var tdTime = document.createElement("td");
       tdTime.className = "col-time";
-      tdTime.textContent = toPersianDigits(row.startTime) + toPersianDigits(" - ") + toPersianDigits(row.endTime);
+      tdTime.textContent = formatDigits(row.startTime) + " - " + formatDigits(row.endTime);
       tr.appendChild(tdTime);
 
       var tdSubject = document.createElement("td");
@@ -1025,7 +1269,7 @@
 
       var tdDuration = document.createElement("td");
       tdDuration.className = "col-duration";
-      tdDuration.textContent = toPersianDigits(row.duration) + "′";
+      tdDuration.textContent = formatDigits(row.duration) + "′";
       tr.appendChild(tdDuration);
 
       var tdDetails = document.createElement("td");
@@ -1048,7 +1292,7 @@
       var btnPlay = document.createElement("button");
       btnPlay.className = "row-action-btn play-btn";
       btnPlay.textContent = (activeTimer.rowId == row.id && activeTimer.isRunning) ? "⏸" : "▶";
-      btnPlay.title = "شروع پارت مطالعاتی";
+      btnPlay.title = i18n[currentLang].play_btn_title;
       btnPlay.addEventListener("click", function(){
         if(activeTimer.rowId == row.id) {
           toggleActiveTimer();
@@ -1096,7 +1340,7 @@
   }
 
   function deleteRow(id){
-    if(!confirm("آیا از حذف این پارت اطمینان دارید؟")) return;
+    if(!confirm(i18n[currentLang].confirm_delete_part)) return;
     if(activeTimer.rowId == id) stopActiveTimer();
     scheduleRows = scheduleRows.filter(function(r){ return r.id != id; });
     delete checksState[id];
@@ -1113,14 +1357,14 @@
     if(id){
       var row = scheduleRows.find(function(r){ return r.id == id; });
       if(!row) return;
-      document.getElementById("modal-title").textContent = "ویرایش پارت";
+      document.getElementById("modal-title").textContent = i18n[currentLang].modal_edit_title;
       document.getElementById("modal-id").value = row.id;
       document.getElementById("modal-subject").value = row.title;
       document.getElementById("modal-duration").value = row.duration;
       document.getElementById("modal-category").value = row.checkbox ? "academic" : "break";
       document.getElementById("modal-desc").value = row.details;
     } else {
-      document.getElementById("modal-title").textContent = "افزودن پارت جدید";
+      document.getElementById("modal-title").textContent = i18n[currentLang].modal_add_title;
       document.getElementById("modal-id").value = "";
       modalForm.reset();
     }
@@ -1151,200 +1395,207 @@
     closeModal();
   });
 
-  /* ---------- Progress & Countdown ---------- */
+  /* ---------- Progress Calculation ---------- */
   function updateProgress(){
-    var checkable = scheduleRows.filter(function(r){ return r.checkbox; });
-    var done = checkable.filter(function(r){ return !!checksState[r.id]; });
-    var pct = checkable.length ? Math.round((done.length/checkable.length)*100) : 0;
-    
-    // Total hours studied calculation for active day
-    var completedMins = done.reduce(function(acc, curr){ return acc + curr.duration; }, 0);
-    var completedHours = (completedMins / 60).toFixed(1);
+    var totalAcademic = 0;
+    var completedAcademic = 0;
+    var totalMinutes = 0;
 
+    scheduleRows.forEach(function(row){
+      if(row.checkbox){
+        totalAcademic++;
+        if(checksState[row.id]){
+          completedAcademic++;
+          totalMinutes += row.duration;
+        }
+      }
+    });
+
+    var pct = totalAcademic > 0 ? Math.round((completedAcademic / totalAcademic) * 100) : 0;
     document.getElementById("progress-fill").style.width = pct + "%";
-    document.getElementById("progress-pct").textContent = toPersianDigits(pct) + "٪";
-    document.getElementById("time-stats-label").textContent = "مجموع مطالعه (" + dayNames[currentActiveDay] + "): " + toPersianDigits(completedHours) + " ساعت";
+    document.getElementById("progress-pct").textContent = formatDigits(pct) + "%";
+
+    var hrs = (totalMinutes / 60).toFixed(1);
+    document.getElementById("time-stats-label").textContent = i18n[currentLang].total_study + ": " + formatDigits(hrs) + " " + i18n[currentLang].hours_unit;
   }
 
-  var konkurDate = new Date("2027-07-02T08:00:00");
-  function tickCountdown(){
-    var diff = konkurDate - new Date();
-    if(diff < 0) diff = 0;
-    document.getElementById("cd-days").textContent = toPersianDigits(Math.floor(diff / 86400000));
-    document.getElementById("cd-hours").textContent = toPersianDigits(pad(Math.floor((diff % 86400000) / 3600000)));
-    document.getElementById("cd-mins").textContent = toPersianDigits(pad(Math.floor((diff % 3600000) / 60000)));
-    document.getElementById("cd-secs").textContent = toPersianDigits(pad(Math.floor((diff % 60000) / 1000)));
-  }
-  tickCountdown();
-  setInterval(tickCountdown, 1000);
+  document.getElementById("reset-day").addEventListener("click", function(){
+    var dayNames = currentLang === 'en' ? dayNamesEN : dayNamesFA;
+    var msg = i18n[currentLang].confirm_reset_checks.replace("{day}", dayNames[currentActiveDay]);
+    if(confirm(msg)){
+      checksState = {};
+      saveJSON(LS.checksPrefix + currentActiveDay, checksState);
+      renderSchedule();
+    }
+  });
 
-  /* ---------- Notes ---------- */
+  document.getElementById("reset-full").addEventListener("click", function(){
+    var dayNames = currentLang === 'en' ? dayNamesEN : dayNamesFA;
+    var msg = i18n[currentLang].confirm_reset_schedule.replace("{day}", dayNames[currentActiveDay]);
+    if(confirm(msg)){
+      scheduleRows = JSON.parse(JSON.stringify(getDefaultRowsForLang()));
+      checksState = {};
+      saveJSON(LS.schedulePrefix + currentActiveDay, scheduleRows);
+      saveJSON(LS.checksPrefix + currentActiveDay, checksState);
+      renderSchedule();
+    }
+  });
+
+  /* ---------- Notes / Loqme ---------- */
+  var noteInput = document.getElementById("note-input");
   var notesList = document.getElementById("notes-list");
   var notesEmpty = document.getElementById("notes-empty");
 
   function renderNotes(){
     notesList.innerHTML = "";
-    notesEmpty.style.display = notesState.length ? "none" : "block";
+    if(notesState.length === 0){
+      notesEmpty.style.display = "block";
+      return;
+    }
+    notesEmpty.style.display = "none";
+
     notesState.forEach(function(note, idx){
       var li = document.createElement("li");
       if(note.done) li.classList.add("done");
 
-      var check = document.createElement("button");
-      check.className = "note-check" + (note.done ? " checked" : "");
-      check.addEventListener("click", function(){
+      var btnCheck = document.createElement("button");
+      btnCheck.className = "note-check" + (note.done ? " checked" : "");
+      btnCheck.addEventListener("click", function(){
         notesState[idx].done = !notesState[idx].done;
         saveJSON(LS.notes, notesState);
         renderNotes();
       });
 
       var span = document.createElement("span");
-      span.className = "note-text"; span.textContent = note.text;
+      span.className = "note-text";
+      span.textContent = note.text;
 
-      var del = document.createElement("button");
-      del.className = "note-del"; del.textContent = "✕";
-      del.addEventListener("click", function(){
-        notesState.splice(idx,1);
+      var btnDel = document.createElement("button");
+      btnDel.className = "note-del";
+      btnDel.textContent = "✕";
+      btnDel.addEventListener("click", function(){
+        notesState.splice(idx, 1);
         saveJSON(LS.notes, notesState);
         renderNotes();
       });
 
-      li.appendChild(check); li.appendChild(span); li.appendChild(del);
+      li.appendChild(btnCheck);
+      li.appendChild(span);
+      li.appendChild(btnDel);
       notesList.appendChild(li);
     });
   }
 
-  var noteInput = document.getElementById("note-input");
   noteInput.addEventListener("keydown", function(e){
-    if(e.key === "Enter"){
-      var val = noteInput.value.trim();
-      if(val){
-        notesState.push({text:val, done:false});
-        saveJSON(LS.notes, notesState);
-        noteInput.value = "";
-        renderNotes();
-      }
+    if(e.key === "Enter" && noteInput.value.trim()){
+      notesState.push({ text: noteInput.value.trim(), done: false });
+      saveJSON(LS.notes, notesState);
+      noteInput.value = "";
+      renderNotes();
     }
   });
 
-  /* ---------- Resets ---------- */
-  document.getElementById("reset-day").addEventListener("click", function(){
-    if(!confirm("تیک‌های " + dayNames[currentActiveDay] + " پاک شوند؟")) return;
-    checksState = {};
-    saveJSON(LS.checksPrefix + currentActiveDay, checksState);
-    renderSchedule();
-  });
-
-  document.getElementById("reset-full").addEventListener("click", function(){
-    if(!confirm("آیا از بازنشانی کلی برنامه روز " + dayNames[currentActiveDay] + " به حالت پیش‌فرض مطمئن هستید؟")) return;
-    stopActiveTimer();
-    scheduleRows = JSON.parse(JSON.stringify(defaultRows));
-    checksState = {}; 
-    startTimeVal = "05:00";
-    timeInput.value = startTimeVal;
-    saveJSON(LS.schedulePrefix + currentActiveDay, scheduleRows); 
-    saveJSON(LS.checksPrefix + currentActiveDay, checksState);
-    saveJSON(LS.startTimePrefix + currentActiveDay, startTimeVal);
-    renderSchedule();
-  });
-
-  /* ---------- Quick Links Management ---------- */
+  /* ---------- Quick Access Links Management ---------- */
   var linkGrid = document.getElementById("link-grid");
   var linksModal = document.getElementById("links-modal");
   var linksManageList = document.getElementById("links-manage-list");
   var linkForm = document.getElementById("link-form");
   var linkEditIndex = document.getElementById("link-edit-index");
-  var linkFormTitle = document.getElementById("link-form-title");
-  var linkSubmitBtn = document.getElementById("link-submit-btn");
-  var cancelLinkEditBtn = document.getElementById("cancel-link-edit");
 
   function renderQuickLinks(){
     linkGrid.innerHTML = "";
-    quickLinks.forEach(function(l){
+    quickLinks.forEach(function(link){
       var a = document.createElement("a");
-      a.className = "link-btn"; a.href = l.url; a.target = "_blank"; a.rel = "noopener noreferrer"; a.textContent = l.label;
+      a.className = "link-btn";
+      a.href = link.url;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.textContent = link.label;
       linkGrid.appendChild(a);
     });
   }
 
-  function renderLinksManager(){
+  function renderLinksManageList(){
     linksManageList.innerHTML = "";
-    if(quickLinks.length === 0){
-      linksManageList.innerHTML = '<div style="font-size:12px; color:var(--text-2);">هیچ لینکی ثبت نشده است.</div>';
+    if(quickLinks.length === 0) {
+      linksManageList.innerHTML = '<div style="font-size:12px; color:var(--text-2); text-align:center;">' + i18n[currentLang].no_links_registered + '</div>';
       return;
     }
-    quickLinks.forEach(function(l, idx){
+    quickLinks.forEach(function(link, idx){
       var item = document.createElement("div");
       item.className = "link-manage-item";
-      
+
       var info = document.createElement("div");
       info.className = "link-manage-info";
-      
-      var lbl = document.createElement("span");
+
+      var lbl = document.createElement("div");
       lbl.className = "link-manage-label";
-      lbl.textContent = l.label;
-      
-      var url = document.createElement("span");
+      lbl.textContent = link.label;
+
+      var url = document.createElement("div");
       url.className = "link-manage-url";
-      url.textContent = l.url;
-      
+      url.textContent = link.url;
+
       info.appendChild(lbl);
       info.appendChild(url);
 
       var actions = document.createElement("div");
       actions.className = "link-manage-actions";
 
-      var editBtn = document.createElement("button");
-      editBtn.type = "button";
-      editBtn.className = "row-action-btn";
-      editBtn.textContent = "✏️";
-      editBtn.addEventListener("click", function(){ startEditingLink(idx); });
+      var btnEdit = document.createElement("button");
+      btnEdit.className = "row-action-btn";
+      btnEdit.textContent = "✏️";
+      btnEdit.addEventListener("click", function(){
+        editQuickLink(idx);
+      });
 
-      var delBtn = document.createElement("button");
-      delBtn.type = "button";
-      delBtn.className = "row-action-btn";
-      delBtn.textContent = "🗑️";
-      delBtn.addEventListener("click", function(){ deleteLink(idx); });
+      var btnDel = document.createElement("button");
+      btnDel.className = "row-action-btn";
+      btnDel.textContent = "🗑️";
+      btnDel.addEventListener("click", function(){
+        deleteQuickLink(idx);
+      });
 
-      actions.appendChild(editBtn);
-      actions.appendChild(delBtn);
+      actions.appendChild(btnEdit);
+      actions.appendChild(btnDel);
+
       item.appendChild(info);
       item.appendChild(actions);
-
       linksManageList.appendChild(item);
     });
   }
 
-  function resetLinkForm(){
-    linkEditIndex.value = "-1";
-    linkFormTitle.textContent = "افزودن لینک جدید";
-    linkSubmitBtn.textContent = "افزودن لینک";
-    cancelLinkEditBtn.style.display = "none";
-    linkForm.reset();
-  }
-
-  function startEditingLink(idx){
-    var l = quickLinks[idx];
-    if(!l) return;
+  function editQuickLink(idx) {
+    var link = quickLinks[idx];
+    if(!link) return;
     linkEditIndex.value = idx;
-    document.getElementById("link-label-input").value = l.label;
-    document.getElementById("link-url-input").value = l.url;
-    linkFormTitle.textContent = "ویرایش لینک (" + l.label + ")";
-    linkSubmitBtn.textContent = "ذخیره تغییرات";
-    cancelLinkEditBtn.style.display = "inline-flex";
+    document.getElementById("link-label-input").value = link.label;
+    document.getElementById("link-url-input").value = link.url;
+    document.getElementById("link-form-title").textContent = i18n[currentLang].h_edit_link;
+    document.getElementById("link-submit-btn").textContent = i18n[currentLang].btn_save_changes;
+    document.getElementById("cancel-link-edit").style.display = "inline-flex";
   }
 
-  function deleteLink(idx){
-    if(!confirm("آیا این دکمه حذف شود؟")) return;
+  function resetLinkForm() {
+    linkEditIndex.value = "-1";
+    linkForm.reset();
+    document.getElementById("link-form-title").textContent = i18n[currentLang].h_add_link;
+    document.getElementById("link-submit-btn").textContent = i18n[currentLang].btn_add_link;
+    document.getElementById("cancel-link-edit").style.display = "none";
+  }
+
+  function deleteQuickLink(idx) {
+    if(!confirm(i18n[currentLang].confirm_delete_link)) return;
     quickLinks.splice(idx, 1);
     saveJSON(LS.links, quickLinks);
     renderQuickLinks();
-    renderLinksManager();
-    resetLinkForm();
+    renderLinksManageList();
+    if(linkEditIndex.value == idx) resetLinkForm();
   }
 
   document.getElementById("manage-links-btn").addEventListener("click", function(){
     resetLinkForm();
-    renderLinksManager();
+    renderLinksManageList();
     linksModal.classList.add("active");
   });
 
@@ -1352,15 +1603,15 @@
     linksModal.classList.remove("active");
   });
 
-  cancelLinkEditBtn.addEventListener("click", resetLinkForm);
+  document.getElementById("cancel-link-edit").addEventListener("click", resetLinkForm);
 
   linkForm.addEventListener("submit", function(e){
     e.preventDefault();
+    var idx = parseInt(linkEditIndex.value, 10);
     var label = document.getElementById("link-label-input").value.trim();
     var url = document.getElementById("link-url-input").value.trim();
-    var idx = parseInt(linkEditIndex.value, 10);
 
-    if(idx >= 0 && idx < quickLinks.length){
+    if(idx >= 0 && idx < quickLinks.length) {
       quickLinks[idx] = { label: label, url: url };
     } else {
       quickLinks.push({ label: label, url: url });
@@ -1368,16 +1619,37 @@
 
     saveJSON(LS.links, quickLinks);
     renderQuickLinks();
-    renderLinksManager();
+    renderLinksManageList();
     resetLinkForm();
   });
 
-  // Initialization
-  updateDayTabsUI();
-  renderSchedule();
-  renderNotes();
+  /* ---------- Countdown Timer ---------- */
+  function getExamTargetDate(){
+    var now = new Date();
+    var target = new Date(now.getFullYear(), 6, 2, 8, 0, 0); // July 2nd target
+    if(now > target){ target = new Date(now.getFullYear() + 1, 6, 2, 8, 0, 0); }
+    return target;
+  }
+
+  function tickCountdown(){
+    var diff = getExamTargetDate() - new Date();
+    if(diff < 0) diff = 0;
+
+    var days = Math.floor(diff / (1000*60*60*24));
+    var hours = Math.floor((diff / (1000*60*60)) % 24);
+    var mins = Math.floor((diff / (1000*60)) % 60);
+    var secs = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("cd-days").textContent = formatDigits(days);
+    document.getElementById("cd-hours").textContent = formatDigits(hours);
+    document.getElementById("cd-mins").textContent = formatDigits(mins);
+    document.getElementById("cd-secs").textContent = formatDigits(secs);
+  }
+
+  /* ---------- Init & Initial Render ---------- */
+  applyLanguage(currentLang);
   renderQuickLinks();
-  updateSessionUI();
+  setInterval(tickCountdown, 1000);
 
 })();
 </script>
